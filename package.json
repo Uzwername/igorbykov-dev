@@ -1,7 +1,15 @@
 {
   "name": "igorbykov-dev",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "description": "Igor Bykov's personal site",
+  "author": {
+    "name": "Igor Bykov",
+    "email": "igor.bykov@protonmail.com",
+    "url": "https://igorbykov.dev/"
+  },
   "engines": {
     "node": ">=22.12.0"
   },
