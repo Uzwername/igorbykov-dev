@@ -24,3 +24,9 @@ pnpm-debug.log*
 
 # raw dev artifacts
 .ai/dev
+
+# playwright output
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/

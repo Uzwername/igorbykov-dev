@@ -5,6 +5,7 @@ import eslint from '@eslint/js';
 import { globalIgnores, defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 import pluginVitest from '@vitest/eslint-plugin';
+import pluginPlaywright from 'eslint-plugin-playwright';
 import eslintPluginAstro from 'eslint-plugin-astro';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
@@ -83,6 +84,19 @@ const tsVitestConfig = [
   ...eslintPluginAstro.configs['jsx-a11y-strict'],
 ];
 
+const tsPlaywrightConfig = [
+  ...srcTsFilesConfig,
+  pluginPlaywright.configs['flat/recommended'],
+  {
+    rules: {
+      'playwright/expect-expect': [
+        'warn',
+        { assertFunctionNames: ['expectTheme'] },
+      ],
+    },
+  },
+];
+
 export default [
   // TS configs
   ...defineConfig({
@@ -104,9 +118,14 @@ export default [
     files: ['src/**/*.astro'],
     extends: srcAstroFilesConfig,
   }),
-  // Test files
+  // Unit test files
   ...defineConfig({
-    files: ['tests/**/*.ts', 'tests/**/*.tsx'],
+    files: ['tests/unit/**/*.ts'],
     extends: tsVitestConfig,
+  }),
+  // E2E test files
+  ...defineConfig({
+    files: ['tests/e2e/**/*.ts'],
+    extends: tsPlaywrightConfig,
   }),
 ];
