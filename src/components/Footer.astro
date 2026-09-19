@@ -1,0 +1,20 @@
+---
+import { LAUNCH_YEAR } from '@/constants/site';
+import Emoji from '@/components/Emoji.astro';
+
+const currentYear = new Date().getFullYear();
+const copyrightYears =
+  currentYear === LAUNCH_YEAR
+    ? `${LAUNCH_YEAR}`
+    : `${LAUNCH_YEAR} – ${currentYear}`;
+---
+
+<footer class="border-border border-t">
+  <div class="text-fg-muted mx-auto max-w-3xl space-y-1 px-6 py-8 text-center text-sm sm:text-left">
+    <p class="font-mono">&copy; {copyrightYears} Igor Bykov</p>
+    <p>
+      Made with <Emoji emoji="❤️" label="love" /> and AI from all around the
+      globe.
+    </p>
+  </div>
+</footer>

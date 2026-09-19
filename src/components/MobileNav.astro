@@ -1,0 +1,120 @@
+---
+import {
+  MOBILE_NAV_BACKDROP_ID,
+  MOBILE_NAV_BUTTON_ID,
+  MOBILE_NAV_CLOSE_ID,
+  MOBILE_NAV_PANEL_ID,
+} from '@/constants/html';
+import { NAV_BAR_PADDING_CLASS_NAME } from '@/constants/styles';
+import IconButton from '@/components/IconButton.astro';
+
+interface NavItem {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  navItems: NavItem[];
+}
+
+const { navItems } = Astro.props;
+---
+
+<div class="md:hidden">
+  <IconButton
+    id={MOBILE_NAV_BUTTON_ID}
+    label="Open menu"
+    aria-expanded="false"
+    aria-controls={MOBILE_NAV_PANEL_ID}
+  >
+    <svg
+      aria-hidden="true"
+      class="h-4 w-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+    >
+      <path d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </IconButton>
+
+  <div
+    id={MOBILE_NAV_BACKDROP_ID}
+    class="pointer-events-none fixed inset-0 z-40 bg-black/40 opacity-0 transition-opacity duration-200"
+  ></div>
+
+  <div
+    id={MOBILE_NAV_PANEL_ID}
+    class="border-border bg-canvas fixed inset-y-0 right-0 z-50 w-full translate-x-full transition-transform duration-200 xs:w-60 xs:border-l"
+  >
+    <div
+      class={`border-border flex justify-end border-b ${NAV_BAR_PADDING_CLASS_NAME}`}
+    >
+      <IconButton id={MOBILE_NAV_CLOSE_ID} label="Close menu">
+        <svg
+          aria-hidden="true"
+          class="h-4 w-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </IconButton>
+    </div>
+    <ul class="flex flex-col gap-4 px-6 py-6 text-sm">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class="text-fg-muted hover:text-fg block transition-colors"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<script>
+  import {
+    MOBILE_NAV_BACKDROP_ID,
+    MOBILE_NAV_BUTTON_ID,
+    MOBILE_NAV_CLOSE_ID,
+    MOBILE_NAV_PANEL_ID,
+  } from '@/constants/html';
+  import { getById } from '@/utils/html';
+
+  (() => {
+    const openButton = getById(MOBILE_NAV_BUTTON_ID);
+    const panel = getById(MOBILE_NAV_PANEL_ID);
+    const closeButton = getById(MOBILE_NAV_CLOSE_ID);
+    const backdrop = getById(MOBILE_NAV_BACKDROP_ID);
+
+    const setOpen = (open: boolean): void => {
+      openButton.setAttribute('aria-expanded', String(open));
+      panel.classList.toggle('translate-x-full', !open);
+      backdrop.classList.toggle('opacity-0', !open);
+      backdrop.classList.toggle('pointer-events-none', !open);
+
+      if (open) {
+        closeButton.focus();
+      } else {
+        openButton.focus();
+      }
+    };
+
+    openButton.addEventListener('click', () => setOpen(true), {
+      passive: true,
+    });
+    closeButton.addEventListener('click', () => setOpen(false), {
+      passive: true,
+    });
+    backdrop.addEventListener('click', () => setOpen(false), { passive: true });
+  })();
+</script>

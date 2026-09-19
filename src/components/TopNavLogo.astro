@@ -1,0 +1,23 @@
+---
+import { TOP_NAV_LOGO_EMOJI_ID } from '@/constants/html';
+---
+
+<a href="/" aria-label="Home" class="text-3xl leading-none">
+  <span id={TOP_NAV_LOGO_EMOJI_ID}>🧑‍💻</span>
+</a>
+
+<script>
+  import { TOP_NAV_LOGO_EMOJI_ID } from '@/constants/html';
+  import { getById } from '@/utils/html';
+
+  (() => {
+    const emojiLogoBox = getById(TOP_NAV_LOGO_EMOJI_ID);
+    const roll = Math.random();
+
+    if (roll < 0.005) {
+      emojiLogoBox.textContent = '🦄';
+    } else if (roll < 0.015) {
+      emojiLogoBox.textContent = '🚀';
+    }
+  })();
+</script>

@@ -1,1 +1,37 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import '@fontsource-variable/ibm-plex-sans';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --breakpoint-xs: 20rem;
+
+  --font-sans: 'IBM Plex Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --color-canvas: #ffffff;
+  --color-canvas-subtle: #f6f7f8;
+  --color-fg: #1a1d21;
+  --color-fg-muted: #5c6570;
+  --color-border: #dde1e6;
+  --color-accent: #1a7f5a;
+  --color-accent-emphasis: #14603f;
+}
+
+.dark {
+  --color-canvas: #14171a;
+  --color-canvas-subtle: #292f36;
+  --color-fg: #e6e8eb;
+  --color-fg-muted: #9aa4ae;
+  --color-border: #838383;
+  --color-accent: #34c98d;
+  --color-accent-emphasis: #29a878;
+}
+
+@layer base {
+  body {
+    @apply bg-canvas text-fg font-sans antialiased;
+  }
+}
