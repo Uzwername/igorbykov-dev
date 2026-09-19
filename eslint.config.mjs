@@ -4,7 +4,7 @@ import path from 'node:path';
 import eslint from '@eslint/js';
 import { globalIgnores, defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
-import pluginJest from 'eslint-plugin-jest';
+import pluginVitest from '@vitest/eslint-plugin';
 import eslintPluginAstro from 'eslint-plugin-astro';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
@@ -77,9 +77,9 @@ const srcAstroFilesConfig = [
   ...eslintPluginAstro.configs['jsx-a11y-strict'],
 ];
 
-const tsJestConfig = [
+const tsVitestConfig = [
   ...srcTsFilesConfig,
-  pluginJest.configs['flat/recommended'],
+  pluginVitest.configs.recommended,
   ...eslintPluginAstro.configs['jsx-a11y-strict'],
 ];
 
@@ -107,6 +107,6 @@ export default [
   // Test files
   ...defineConfig({
     files: ['tests/**/*.ts', 'tests/**/*.tsx'],
-    extends: tsJestConfig,
+    extends: tsVitestConfig,
   }),
 ];
