@@ -16,6 +16,11 @@ export default defineConfig({
   use: {
     baseURL: BASE_URL,
     trace: 'on-first-retry',
+    // Pin every emulated context setting explicitly so tests never depend on
+    // a Playwright-owned default that could change. Specs that care about a
+    // specific value override it locally with `test.use(...)`.
+    colorScheme: 'light',
+    reducedMotion: 'no-preference',
   },
   projects: [
     {
