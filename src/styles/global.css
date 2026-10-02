@@ -11,23 +11,23 @@
   --font-sans: 'IBM Plex Sans Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
 
-  --color-canvas: #ffffff;
-  --color-canvas-subtle: #f6f7f8;
-  --color-fg: #1a1d21;
-  --color-fg-muted: #5c6570;
-  --color-border: #dde1e6;
-  --color-accent: #1a7f5a;
-  --color-accent-emphasis: #14603f;
+  --color-canvas: #FFF;
+  --color-canvas-subtle: #F6F7F8;
+  --color-fg: #1A1D21;
+  --color-fg-muted: #5C6570;
+  --color-border: #DDE1E6;
+  --color-accent: #1A7F5A;
+  --color-accent-emphasis: #14603F;
 }
 
 .dark {
-  --color-canvas: #14171a;
-  --color-canvas-subtle: #292f36;
-  --color-fg: #e6e8eb;
-  --color-fg-muted: #9aa4ae;
+  --color-canvas: #14171A;
+  --color-canvas-subtle: #292F36;
+  --color-fg: #E6E8EB;
+  --color-fg-muted: #9AA4AE;
   --color-border: #838383;
-  --color-accent: #34c98d;
-  --color-accent-emphasis: #29a878;
+  --color-accent: #34C98D;
+  --color-accent-emphasis: #29A878;
 }
 
 @layer base {
