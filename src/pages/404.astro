@@ -1,0 +1,32 @@
+---
+import { Picture } from 'astro:assets';
+import Layout from '@/layouts/Layout.astro';
+import LinkButton from '@/components/LinkButton.astro';
+import confusedGif from '@/assets/confused-pulp-fiction.gif';
+---
+
+<Layout title="Igor Bykov — Page not found" noIndex>
+  <section class="mx-auto max-w-3xl px-6 py-16">
+    <Picture
+      priority
+      src={confusedGif}
+      formats={['webp']}
+      fallbackFormat="gif"
+      alt="Vincent Vega from Pulp Fiction looking around"
+      class="border-border mx-auto block h-auto w-full max-w-sm rounded-md border"
+    />
+    <h1 class="mt-8 text-2xl font-semibold">This page was not found.</h1>
+    <p class="mt-1">It might've been around, but it certainly isn't now.</p>
+    <p class="text-fg-muted mt-3 max-w-prose">
+      Finding the right page can be tricky, but finding a senior engineer to
+      help you build a great product doesn't have to be. Shall we just talk &
+      figure out what exactly is missing?
+    </p>
+    <div class="mt-6 flex flex-wrap gap-4">
+      <LinkButton href="/">Go home</LinkButton>
+      <LinkButton href="/contact/" variant="secondary">
+        Let's talk
+      </LinkButton>
+    </div>
+  </section>
+</Layout>

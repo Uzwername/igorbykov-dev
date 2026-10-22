@@ -1,0 +1,35 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Variant = 'primary' | 'secondary';
+
+interface Props extends Omit<HTMLAttributes<'a'>, 'class'> {
+  href: string;
+  variant?: Variant;
+  /**
+   * Layout only (margin, width, self-alignment…). Tailwind resolves
+   * conflicting utilities by stylesheet order, not attribute order, so
+   * classes that clash with the button's own (padding, colors…) won't
+   * reliably win.
+   */
+  class?: string;
+}
+
+const { variant = 'primary', class: className, ...attributes } = Astro.props;
+
+const VARIANT_CLASS_NAMES: Record<Variant, string> = {
+  primary: 'bg-accent text-canvas hover:bg-accent-emphasis border-transparent',
+  secondary: 'border-border bg-canvas-subtle text-fg hover:border-fg-muted',
+};
+---
+
+<a
+  class:list={[
+    'inline-flex items-center rounded-md border px-3 py-1.5 text-sm font-medium transition-colors',
+    VARIANT_CLASS_NAMES[variant],
+    className,
+  ]}
+  {...attributes}
+>
+  <slot />
+</a>
