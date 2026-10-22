@@ -1,0 +1,17 @@
+// Cloudflare Workers config: https://developers.cloudflare.com/workers/wrangler/configuration/
+// Static assets only (no Worker script), so every request is served straight
+// from `dist/` and is free & unmetered on the Workers free plan.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "igorbykov-dev",
+  "compatibility_date": "2026-10-22",
+  // Cloudflare creates the DNS record & certificate for this on deploy.
+  "routes": [{ "pattern": "igorbykov.dev", "custom_domain": true }],
+  "assets": {
+    "directory": "./dist",
+    // Serves `dist/404.html` (with a 404 status) for unknown paths.
+    "not_found_handling": "404-page",
+    // `/cv/index.html` is served at `/cv/`, matching `trailingSlash: 'always'`.
+    "html_handling": "auto-trailing-slash",
+  },
+}
