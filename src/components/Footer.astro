@@ -1,12 +1,12 @@
 ---
-import { LAUNCH_YEAR } from '@/constants/site';
+import { SITE_LAUNCH_YEAR } from '@/constants/site';
 import Emoji from '@/components/Emoji.astro';
 
 const currentYear = new Date().getFullYear();
 const copyrightYears =
-  currentYear === LAUNCH_YEAR
-    ? `${LAUNCH_YEAR}`
-    : `${LAUNCH_YEAR} – ${currentYear}`;
+  currentYear === SITE_LAUNCH_YEAR
+    ? `${SITE_LAUNCH_YEAR}`
+    : `${SITE_LAUNCH_YEAR} – ${currentYear}`;
 ---
 
 <footer class="border-border border-t">

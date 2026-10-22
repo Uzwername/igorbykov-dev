@@ -1,5 +1,34 @@
 ---
+import { Schema } from 'astro-seo-schema';
+import type { Person, WithContext } from 'schema-dts';
 import Layout from '@/layouts/Layout.astro';
+import cv from '@/data/cv.json';
+import { SITE_PORTRAIT_PATH, SITE_URL } from '@/constants/site';
+import type { CvData } from '@/types/cv';
+
+const { profile } = cv as CvData;
+
+const person: WithContext<Person> = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  url: SITE_URL,
+  image: new URL(SITE_PORTRAIT_PATH, SITE_URL).href,
+  jobTitle: 'Senior full stack software engineer',
+  email: `mailto:${profile.contact.email}`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Barcelona',
+    addressCountry: 'ES',
+  },
+  knowsLanguage: profile.languages.map(({ name }) => name),
+  sameAs: [
+    profile.contact.linkedin,
+    profile.contact.github,
+    profile.contact.stackOverflow,
+    profile.contact.devTo,
+  ],
+};
 
 const stack = [
   'TypeScript',
@@ -12,6 +41,7 @@ const stack = [
 ---
 
 <Layout title="Igor Bykov — Senior full stack software engineer">
+  <Schema slot="head" item={person} />
   <section class="mx-auto max-w-3xl px-6 py-16">
     <h1 class="text-2xl font-semibold">Igor Bykov</h1>
     <p class="text-fg-muted mt-3 max-w-prose">
