@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+// `target` is fixed, so there's never two conflicting ways to set it.
+interface Props extends Omit<HTMLAttributes<'a'>, 'rel' | 'target'> {
+  href: string;
+  /** Extra `rel` keywords (e.g. `['me']`), added to the fixed ones. */
+  rel?: string[];
+}
+
+const { rel = [], ...attributes } = Astro.props;
+
+const FIXED_REL = ['noopener', 'noreferrer', 'external'];
+const relValue = [...new Set([...FIXED_REL, ...rel])].join(' ');
+
+// Trimmed so the line breaks around multi-line slot content don't become
+// spaces inside the link (an underlined trailing space). Safe to re-insert
+// with `set:html`: the slot is already rendered, i.e. its expressions are
+// escaped exactly as `<slot />` would escape them.
+const content = (await Astro.slots.render('default')).trim();
+---
+
+<a {...attributes} rel={relValue} target="_blank" set:html={content} />
