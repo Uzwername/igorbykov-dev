@@ -10,10 +10,20 @@ import { SITE_URL } from './src/constants/site';
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
-  // Matches how GitHub Pages serves `/cv/index.html`, so canonical URLs,
+  // Matches how Cloudflare serves `/cv/index.html` (at `/cv/`), so canonical URLs,
   // the sitemap and internal links all agree and nothing needs a redirect.
   trailingSlash: 'always',
-  integrations: [react(), sitemap()],
+  // Hashes every inline script/style into a per-page CSP `<meta>`; the
+  // remaining (non-script) directives live in `public/_headers`.
+  security: { csp: true },
+  // No Markdown content; Shiki's inline styles would also clash with the CSP.
+  markdown: { syntaxHighlight: false },
+  integrations: [
+    react(),
+    sitemap({
+      filter: (page) => !page.endsWith('/under-construction/'),
+    }),
+  ],
 
   vite: {
     plugins: [tailwindcss()],

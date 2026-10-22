@@ -1,0 +1,27 @@
+# Cloudflare redirect rules: https://developers.cloudflare.com/workers/static-assets/redirects/
+# Rules are first-match, and redirects apply even when a file exists at the
+# path, so everything the under-construction page needs is passed through
+# (200 to itself) before the catch-all below.
+#
+# UNDER CONSTRUCTION: delete this whole block to launch the site.
+/under-construction/          /under-construction/          200
+/_astro/*                     /_astro/:splat                200
+/favicon.ico                  /favicon.ico                  200
+/favicon.svg                  /favicon.svg                  200
+/favicon-16x16.png            /favicon-16x16.png            200
+/favicon-32x32.png            /favicon-32x32.png            200
+/favicon-96x96.png            /favicon-96x96.png            200
+/safari-pinned-tab.svg        /safari-pinned-tab.svg        200
+/apple-touch-icon.png         /apple-touch-icon.png         200
+/apple-touch-icon-precomposed.png /apple-touch-icon-precomposed.png 200
+/apple-touch-icon-120x120.png /apple-touch-icon-120x120.png 200
+/apple-touch-icon-152x152.png /apple-touch-icon-152x152.png 200
+/apple-touch-icon-167x167.png /apple-touch-icon-167x167.png 200
+/android-chrome-192x192.png   /android-chrome-192x192.png   200
+/android-chrome-512x512.png   /android-chrome-512x512.png   200
+/mstile-150x150.png           /mstile-150x150.png           200
+/site.webmanifest             /site.webmanifest             200
+/browserconfig.xml            /browserconfig.xml            200
+/og-image.png                 /og-image.png                 200
+/robots.txt                   /robots.txt                   200
+/*                            /under-construction/          302
