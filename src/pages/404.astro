@@ -3,6 +3,7 @@ import { Picture } from 'astro:assets';
 import Layout from '@/layouts/Layout.astro';
 import LinkButton from '@/components/LinkButton.astro';
 import confusedGif from '@/assets/confused-pulp-fiction.gif';
+import { OPENING_MEDIA_CLASS_NAME } from '@/constants/styles';
 ---
 
 <Layout title="Igor Bykov — Page not found" noIndex>
@@ -13,10 +14,10 @@ import confusedGif from '@/assets/confused-pulp-fiction.gif';
       formats={['webp']}
       fallbackFormat="gif"
       alt="Vincent Vega from Pulp Fiction looking around"
-      class="border-border mx-auto block h-auto w-full max-w-sm rounded-md border"
+      class={OPENING_MEDIA_CLASS_NAME}
     />
-    <h1 class="mt-8 text-2xl font-semibold">This page was not found.</h1>
-    <p class="mt-1">It might've been around, but it certainly isn't now.</p>
+    <h1 class="mt-8 text-2xl font-semibold">This page was not found</h1>
+    <p class="mt-1">It might've been around, but it certainly isn't now</p>
     <p class="text-fg-muted mt-3 max-w-prose">
       Finding the right page can be tricky, but finding a senior engineer to
       help you build a great product doesn't have to be. Shall we just talk &
