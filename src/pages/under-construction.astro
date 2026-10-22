@@ -1,5 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import ExternalLink from '@/components/ExternalLink.astro';
+import LinkButton from '@/components/LinkButton.astro';
 import cv from '@/data/cv.json';
 import { OPENING_MEDIA_CLASS_NAME } from '@/constants/styles';
 import type { CvData } from '@/types/cv';
@@ -22,19 +24,23 @@ const { profile } = cv as CvData;
       aria-label="A site under construction"
       class={OPENING_MEDIA_CLASS_NAME}
     ></video>
-    <h1 class="mt-8 text-2xl font-semibold">
-      Something great is being built here
-    </h1>
+    <h1 class="mt-8 text-2xl font-semibold">This site is under construction</h1>
     <p class="mt-1">
-      Check back soon, or have a look at{' '}
-      <a
+      Something great is being built here, so check back soon! In the meantime,
+      feel free to have a look at{' '}
+      <ExternalLink
         href={profile.contact.linkedin}
-        rel="me"
+        rel={['me']}
         class="text-accent hover:text-accent-emphasis underline underline-offset-2 transition-colors"
       >
         my LinkedIn
-      </a>{' '}
-      in the meantime!
+      </ExternalLink>{' '}
+      or drop me an email.
     </p>
+    <div class="mt-6 flex flex-wrap gap-4">
+      <LinkButton href={`mailto:${profile.contact.email}`}>
+        Send email
+      </LinkButton>
+    </div>
   </section>
 </Layout>
