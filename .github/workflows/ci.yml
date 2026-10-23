@@ -1,4 +1,6 @@
 name: CI
+# Push runs would otherwise be titled after the commit message. PR runs keep the PR title.
+run-name: ${{ github.event_name == 'push' && '[prod] Deploy' || github.event.pull_request.title }}
 
 on:
   push:
