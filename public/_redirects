@@ -7,3 +7,8 @@
 # redirected too. Redirecting every other page is done by a Cloudflare
 # Redirect Rule on the zone instead (see AGENTS.md).
 /    /under-construction/    302
+
+# Short, shareable CV link. Redirects instead of serving the file under this
+# name because some browsers ignore `Content-Disposition` filenames for inline
+# PDFs and saves them under the URL's last segment.
+/cv.pdf    /cv-igor-bykov.pdf    302
