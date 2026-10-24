@@ -57,7 +57,7 @@ const tsConfigFilesConfig = [
   tseslint.configs.stylistic,
 ];
 
-const srcTsFilesConfig = [
+const typeCheckedTsFilesConfig = [
   ...baseConfig,
   tseslint.configs.strictTypeChecked,
   tseslint.configs.stylisticTypeChecked,
@@ -68,7 +68,17 @@ const srcTsFilesConfig = [
         tsconfigRootDir: import.meta.dirname,
       },
     },
+    rules: {
+      '@typescript-eslint/restrict-template-expressions': [
+        'error',
+        { allowNumber: true },
+      ],
+    },
   },
+];
+
+const srcTsFilesConfig = [
+  ...typeCheckedTsFilesConfig,
   ...eslintPluginAstro.configs['jsx-a11y-strict'],
 ];
 
@@ -112,6 +122,11 @@ export default [
   ...defineConfig({
     files: ['src/**/*.ts', 'src/**/*.tsx'],
     extends: srcTsFilesConfig,
+  }),
+  // Asset generation scripts
+  ...defineConfig({
+    files: ['scripts/**/*.ts'],
+    extends: typeCheckedTsFilesConfig,
   }),
   // Project astro files
   ...defineConfig({

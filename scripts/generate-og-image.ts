@@ -16,9 +16,18 @@ const PHOTO_PATH = path.join(ROOT, 'src/assets/igor-bykov.jpg');
 
 // WOFF1 specifically: opentype.js can't decompress WOFF2 on its own.
 const FONT_DIR = path.join(ROOT, 'node_modules/@fontsource');
-const SANS_SEMIBOLD_PATH = path.join(FONT_DIR, 'ibm-plex-sans/files/ibm-plex-sans-latin-600-normal.woff');
-const SANS_REGULAR_PATH = path.join(FONT_DIR, 'ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff');
-const MONO_MEDIUM_PATH = path.join(FONT_DIR, 'ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff');
+const SANS_SEMIBOLD_PATH = path.join(
+  FONT_DIR,
+  'ibm-plex-sans/files/ibm-plex-sans-latin-600-normal.woff',
+);
+const SANS_REGULAR_PATH = path.join(
+  FONT_DIR,
+  'ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff',
+);
+const MONO_MEDIUM_PATH = path.join(
+  FONT_DIR,
+  'ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff',
+);
 
 // The standard 1.91:1 size every major platform renders as a large card.
 const WIDTH = 1200;
@@ -95,11 +104,21 @@ interface Fonts {
 
 const loadFont = (fontPath: string) => {
   const buffer = readFileSync(fontPath);
-  return opentype.parse(buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength));
+  return opentype.parse(
+    buffer.buffer.slice(
+      buffer.byteOffset,
+      buffer.byteOffset + buffer.byteLength,
+    ),
+  );
 };
 
 // Greedy word wrap against the font's real advance widths.
-const wrapText = (font: Font, text: string, fontSize: number, maxWidth: number) => {
+const wrapText = (
+  font: Font,
+  text: string,
+  fontSize: number,
+  maxWidth: number,
+) => {
   const lines: string[] = [];
   let current = '';
 
@@ -164,7 +183,13 @@ interface CroppedPhotoOptions {
   attributes?: string;
 }
 
-const buildCroppedPhoto = ({ photoBase64, boxX, boxY, boxSize, attributes = '' }: CroppedPhotoOptions) => {
+const buildCroppedPhoto = ({
+  photoBase64,
+  boxX,
+  boxY,
+  boxSize,
+  attributes = '',
+}: CroppedPhotoOptions) => {
   const scale = boxSize / PHOTO_CROP.size;
 
   return `<image
@@ -191,7 +216,9 @@ const buildCardPhoto = (photoBase64: string) => `
 
 // Plain square headshot (no card, no circle) for structured data, where search
 // engines expect a photo of the person rather than a designed graphic.
-const buildPortraitSvg = (photoBase64: string) => `<svg xmlns="http://www.w3.org/2000/svg" width="${PORTRAIT_SIZE}" height="${PORTRAIT_SIZE}" viewBox="0 0 ${PORTRAIT_SIZE} ${PORTRAIT_SIZE}">
+const buildPortraitSvg = (
+  photoBase64: string,
+) => `<svg xmlns="http://www.w3.org/2000/svg" width="${PORTRAIT_SIZE}" height="${PORTRAIT_SIZE}" viewBox="0 0 ${PORTRAIT_SIZE} ${PORTRAIT_SIZE}">
   ${buildCroppedPhoto({ photoBase64, boxX: 0, boxY: 0, boxSize: PORTRAIT_SIZE })}
 </svg>
 `;
@@ -211,9 +238,17 @@ const buildSocials = (font: Font, x: number, baseline: number) => {
     const iconY = baseline - SOCIAL_FONT_SIZE * 0.35 - SOCIAL_ICON_SIZE / 2;
     const icon = `<path d="${iconPath}" fill="${COLOR_FG_MUTED}" transform="translate(${cursor} ${iconY}) scale(${SOCIAL_ICON_SIZE / iconViewBox})" />`;
     const textX = cursor + SOCIAL_ICON_SIZE + SOCIAL_ICON_GAP;
-    const text = textPath({ font, text: handle, x: textX, y: baseline, fontSize: SOCIAL_FONT_SIZE, fill: COLOR_FG_MUTED });
+    const text = textPath({
+      font,
+      text: handle,
+      x: textX,
+      y: baseline,
+      fontSize: SOCIAL_FONT_SIZE,
+      fill: COLOR_FG_MUTED,
+    });
 
-    cursor = textX + font.getAdvanceWidth(handle, SOCIAL_FONT_SIZE) + SOCIAL_ITEM_GAP;
+    cursor =
+      textX + font.getAdvanceWidth(handle, SOCIAL_FONT_SIZE) + SOCIAL_ITEM_GAP;
 
     return `${icon}\n  ${text}`;
   }).join('\n  ');
@@ -226,12 +261,18 @@ const buildCardSvg = (fonts: Fonts, photoBase64: string) => {
   const subtitleLineHeight = 46;
   const locationSize = 24;
 
-  const subtitleLines = wrapText(fonts.sansRegular, SUBTITLE, subtitleSize, TEXT_MAX_WIDTH);
+  const subtitleLines = wrapText(
+    fonts.sansRegular,
+    SUBTITLE,
+    subtitleSize,
+    TEXT_MAX_WIDTH,
+  );
 
   // Title + subtitle block is vertically centered on the card; the domain is
   // pinned to the card's top padding, socials (with location right above them)
   // to its bottom padding.
-  const blockHeight = titleSize + 24 + subtitleLineHeight * subtitleLines.length;
+  const blockHeight =
+    titleSize + 24 + subtitleLineHeight * subtitleLines.length;
   // Nudged slightly above true center to balance the location + socials below.
   const titleBaseline = HEIGHT / 2 - blockHeight / 2 + titleSize - 8;
   const firstSubtitleBaseline = titleBaseline + 24 + subtitleLineHeight;
@@ -273,7 +314,9 @@ const buildCardSvg = (fonts: Fonts, photoBase64: string) => {
 const writePng = (outputPath: string, svg: string) => {
   const png = new Resvg(svg, { fitTo: { mode: 'original' } }).render().asPng();
   writeFileSync(outputPath, png);
-  console.log(`wrote ${path.relative(ROOT, outputPath)} (${Math.round(png.length / 1024)} KB)`);
+  console.log(
+    `wrote ${path.relative(ROOT, outputPath)} (${Math.round(png.length / 1024)} KB)`,
+  );
 };
 
 const main = () => {

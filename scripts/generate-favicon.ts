@@ -30,7 +30,12 @@ const ICON_BACKDROP_COLOR = WHITE;
 
 const loadFont = () => {
   const buffer = readFileSync(FONT_PATH);
-  return opentype.parse(buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength));
+  return opentype.parse(
+    buffer.buffer.slice(
+      buffer.byteOffset,
+      buffer.byteOffset + buffer.byteLength,
+    ),
+  );
 };
 
 const getTextPathAndBounds = (font: Font, fontSize: number) => {
@@ -74,7 +79,9 @@ const circleCx = CANVAS_SIZE / 2;
 const circleCy = CANVAS_SIZE / 2;
 const circleR = CANVAS_SIZE / 2 - CIRCLE_MARGIN;
 
-const buildColorSvg = (textPathData: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CANVAS_SIZE} ${CANVAS_SIZE}">
+const buildColorSvg = (
+  textPathData: string,
+) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CANVAS_SIZE} ${CANVAS_SIZE}">
   <circle cx="${circleCx}" cy="${circleCy}" r="${circleR}" fill="${BLACK}" />
   <path d="${textPathData}" fill="${WHITE}" />
 </svg>
@@ -83,7 +90,10 @@ const buildColorSvg = (textPathData: string) => `<svg xmlns="http://www.w3.org/2
 // Safari's mask-icon must be a single silhouette: the letters become
 // transparent cutouts in the circle (evenodd), so whichever accent color
 // Safari applies still reads correctly through the tab bar.
-const buildMaskSvg = (circlePathData: string, textPathData: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CANVAS_SIZE} ${CANVAS_SIZE}">
+const buildMaskSvg = (
+  circlePathData: string,
+  textPathData: string,
+) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CANVAS_SIZE} ${CANVAS_SIZE}">
   <path fill-rule="evenodd" d="${circlePathData} ${textPathData}" />
 </svg>
 `;
@@ -150,7 +160,9 @@ const main = () => {
   writePublicFile('favicon.svg', colorSvg);
   writePublicFile('safari-pinned-tab.svg', maskSvg);
 
-  const pngSizes = [16, 32, 48, 96, 120, 128, 150, 152, 167, 180, 192, 256, 512];
+  const pngSizes = [
+    16, 32, 48, 96, 120, 128, 150, 152, 167, 180, 192, 256, 512,
+  ];
   const pngBuffers = new Map<number, Buffer>();
 
   for (const size of pngSizes) {
@@ -190,8 +202,16 @@ const main = () => {
     name: 'Igor Bykov — Senior full stack software engineer',
     short_name: 'Igor Bykov',
     icons: [
-      { src: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { src: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+      {
+        src: '/android-chrome-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+      {
+        src: '/android-chrome-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+      },
     ],
     theme_color: ICON_BACKDROP_COLOR,
     background_color: ICON_BACKDROP_COLOR,

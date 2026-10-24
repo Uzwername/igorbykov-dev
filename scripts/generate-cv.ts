@@ -23,11 +23,18 @@ try {
   const page = await browser.newPage();
   await page.setContent(render(cv, layout, css));
   await page.evaluate(() => document.fonts.ready);
-  await page.pdf({ path: PDF_OUTPUT_PATH, preferCSSPageSize: true, printBackground: true, tagged: true });
+  await page.pdf({
+    path: PDF_OUTPUT_PATH,
+    preferCSSPageSize: true,
+    printBackground: true,
+    tagged: true,
+  });
 } finally {
   await browser.close();
 }
 
 await copyFile(DATA_PATH, DATA_OUTPUT_PATH);
 
-console.log(`Written ${path.relative(ROOT, PDF_OUTPUT_PATH)} & ${path.relative(ROOT, DATA_OUTPUT_PATH)}`);
+console.log(
+  `Written ${path.relative(ROOT, PDF_OUTPUT_PATH)} & ${path.relative(ROOT, DATA_OUTPUT_PATH)}`,
+);
