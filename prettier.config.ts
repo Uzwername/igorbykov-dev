@@ -1,3 +1,5 @@
+import type { Config } from 'prettier';
+
 export default {
   semi: true,
   singleQuote: true,
@@ -11,4 +13,4 @@ export default {
       },
     },
   ],
-};
+} satisfies Config;

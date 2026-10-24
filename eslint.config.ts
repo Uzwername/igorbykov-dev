@@ -1,4 +1,5 @@
-// @ts-check
+// Loaded by Node's native type stripping (see the `lint` scripts' `--flag`),
+// so erasable TypeScript syntax only.
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import eslint from '@eslint/js';
@@ -8,17 +9,16 @@ import pluginVitest from '@vitest/eslint-plugin';
 import pluginPlaywright from 'eslint-plugin-playwright';
 import eslintPluginAstro from 'eslint-plugin-astro';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import type { Linter } from 'eslint';
 
 const rawGitIgnoreContents = await fs.readFile(
   path.join(import.meta.dirname, '.gitignore'),
   { encoding: 'utf8' },
 );
 
-/** @type {Array.<string>} */
-const _accumulator = [];
 const gitIgnoreContents = rawGitIgnoreContents
   .split('\n')
-  .reduce((accumulator, rawLine) => {
+  .reduce<string[]>((accumulator, rawLine) => {
     const line = rawLine.trim();
 
     if (!line || line.startsWith('#')) {
@@ -26,10 +26,9 @@ const gitIgnoreContents = rawGitIgnoreContents
     }
 
     return [...accumulator, line];
-  }, _accumulator);
+  }, []);
 
-/** @type {Readonly<import('eslint/config').Config['rules']>} */
-const customRules = {
+const customRules: Readonly<Linter.RulesRecord> = {
   'linebreak-style': ['error', 'unix'],
   quotes: [
     'error',
@@ -73,7 +72,7 @@ const typeCheckedTsFilesConfig = [
         'error',
         { allowNumber: true },
       ],
-    },
+    } satisfies Linter.RulesRecord,
   },
 ];
 
@@ -103,7 +102,7 @@ const tsPlaywrightConfig = [
         'warn',
         { assertFunctionNames: ['expectTheme'] },
       ],
-    },
+    } satisfies Linter.RulesRecord,
   },
 ];
 
@@ -112,11 +111,6 @@ export default [
   ...defineConfig({
     files: ['*.ts'],
     extends: tsConfigFilesConfig,
-  }),
-  // non-TS configs
-  ...defineConfig({
-    files: ['*.mjs'],
-    extends: baseConfig,
   }),
   // Project TS files
   ...defineConfig({
