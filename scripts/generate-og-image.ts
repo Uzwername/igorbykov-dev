@@ -1,16 +1,15 @@
 // Regenerates the default social-preview card (og:image / twitter:image) and
 // the square portrait used by the Person JSON-LD, both in public/. Text is drawn from real IBM Plex glyph outlines (same approach as
-// generate-favicon.mjs), so the card doesn't depend on any installed fonts.
+// generate-favicon.ts), so the card doesn't depend on any installed fonts.
 //
-// Re-run with: node scripts/generate-og-image.mjs
+// Re-run with: tsx scripts/generate-og-image.ts
 import { readFileSync, writeFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import opentype from 'opentype.js';
 import { Resvg } from '@resvg/resvg-js';
+import type { Font, PathCommand } from 'opentype.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(import.meta.dirname, '..');
 const CARD_OUTPUT_PATH = path.join(ROOT, 'public/og-image.png');
 const PORTRAIT_OUTPUT_PATH = path.join(ROOT, 'public/igor-bykov.png');
 const PHOTO_PATH = path.join(ROOT, 'src/assets/igor-bykov.jpg');
@@ -88,14 +87,20 @@ const SOCIALS = [
   },
 ];
 
-const loadFont = (fontPath) => {
+interface Fonts {
+  sansSemibold: Font;
+  sansRegular: Font;
+  monoMedium: Font;
+}
+
+const loadFont = (fontPath: string) => {
   const buffer = readFileSync(fontPath);
   return opentype.parse(buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength));
 };
 
 // Greedy word wrap against the font's real advance widths.
-const wrapText = (font, text, fontSize, maxWidth) => {
-  const lines = [];
+const wrapText = (font: Font, text: string, fontSize: number, maxWidth: number) => {
+  const lines: string[] = [];
   let current = '';
 
   for (const word of text.split(' ')) {
@@ -119,10 +124,10 @@ const wrapText = (font, text, fontSize, maxWidth) => {
 // intermittently emits `NaN` coordinates (e.g. inside "Barcelona" in Plex Mono
 // 500) even though the underlying commands are valid, and resvg silently drops
 // everything after the first malformed number.
-const toPathData = (commands) =>
+const toPathData = (commands: PathCommand[]) =>
   commands
     .map((command) => {
-      const n = (value) => value.toFixed(2);
+      const n = (value: number) => value.toFixed(2);
       switch (command.type) {
         case 'M':
         case 'L':
@@ -137,12 +142,29 @@ const toPathData = (commands) =>
     })
     .join('');
 
-const textPath = ({ font, text, x, y, fontSize, fill }) =>
+interface TextPathOptions {
+  font: Font;
+  text: string;
+  x: number;
+  y: number;
+  fontSize: number;
+  fill: string;
+}
+
+const textPath = ({ font, text, x, y, fontSize, fill }: TextPathOptions) =>
   `<path d="${toPathData(font.getPath(text, x, y, fontSize).commands)}" fill="${fill}" />`;
 
 // The full source photo, positioned & scaled so that exactly PHOTO_CROP lands
 // on the square box at (boxX, boxY) of side boxSize.
-const buildCroppedPhoto = ({ photoBase64, boxX, boxY, boxSize, attributes = '' }) => {
+interface CroppedPhotoOptions {
+  photoBase64: string;
+  boxX: number;
+  boxY: number;
+  boxSize: number;
+  attributes?: string;
+}
+
+const buildCroppedPhoto = ({ photoBase64, boxX, boxY, boxSize, attributes = '' }: CroppedPhotoOptions) => {
   const scale = boxSize / PHOTO_CROP.size;
 
   return `<image
@@ -154,7 +176,7 @@ const buildCroppedPhoto = ({ photoBase64, boxX, boxY, boxSize, attributes = '' }
   />`;
 };
 
-const buildCardPhoto = (photoBase64) => `
+const buildCardPhoto = (photoBase64: string) => `
   <clipPath id="photo-clip">
     <circle cx="${PHOTO_CENTER_X}" cy="${PHOTO_CENTER_Y}" r="${PHOTO_RADIUS}" />
   </clipPath>
@@ -169,7 +191,7 @@ const buildCardPhoto = (photoBase64) => `
 
 // Plain square headshot (no card, no circle) for structured data, where search
 // engines expect a photo of the person rather than a designed graphic.
-const buildPortraitSvg = (photoBase64) => `<svg xmlns="http://www.w3.org/2000/svg" width="${PORTRAIT_SIZE}" height="${PORTRAIT_SIZE}" viewBox="0 0 ${PORTRAIT_SIZE} ${PORTRAIT_SIZE}">
+const buildPortraitSvg = (photoBase64: string) => `<svg xmlns="http://www.w3.org/2000/svg" width="${PORTRAIT_SIZE}" height="${PORTRAIT_SIZE}" viewBox="0 0 ${PORTRAIT_SIZE} ${PORTRAIT_SIZE}">
   ${buildCroppedPhoto({ photoBase64, boxX: 0, boxY: 0, boxSize: PORTRAIT_SIZE })}
 </svg>
 `;
@@ -182,7 +204,7 @@ const SOCIAL_ROW_GAP = 52; // Baseline-to-baseline, from the location line to th
 
 // One row of icon + handle pairs, starting at x; `baseline` is the handles'
 // text baseline, icons are vertically centered on the text's x-height.
-const buildSocials = (font, x, baseline) => {
+const buildSocials = (font: Font, x: number, baseline: number) => {
   let cursor = x;
 
   return SOCIALS.map(({ handle, iconViewBox, iconPath }) => {
@@ -197,7 +219,7 @@ const buildSocials = (font, x, baseline) => {
   }).join('\n  ');
 };
 
-const buildCardSvg = (fonts, photoBase64) => {
+const buildCardSvg = (fonts: Fonts, photoBase64: string) => {
   const domainSize = 26;
   const titleSize = 76;
   const subtitleSize = 36;
@@ -248,14 +270,14 @@ const buildCardSvg = (fonts, photoBase64) => {
 `;
 };
 
-const writePng = (outputPath, svg) => {
+const writePng = (outputPath: string, svg: string) => {
   const png = new Resvg(svg, { fitTo: { mode: 'original' } }).render().asPng();
   writeFileSync(outputPath, png);
   console.log(`wrote ${path.relative(ROOT, outputPath)} (${Math.round(png.length / 1024)} KB)`);
 };
 
 const main = () => {
-  const fonts = {
+  const fonts: Fonts = {
     sansSemibold: loadFont(SANS_SEMIBOLD_PATH),
     sansRegular: loadFont(SANS_REGULAR_PATH),
     monoMedium: loadFont(MONO_MEDIUM_PATH),

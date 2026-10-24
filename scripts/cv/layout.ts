@@ -2,7 +2,7 @@
 // this file only decides which parts appear on which of the two A4 pages.
 // Roles appear in src/data/cv.json order; pages just take the next n of them.
 
-import type { Layout } from './template.ts';
+import type { Layout } from './template';
 
 export default {
   pages: [

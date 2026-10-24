@@ -2,7 +2,7 @@
 // ghtml escapes every `${…}`; `!${…}` embeds already-rendered HTML (nested `html` calls).
 
 import { html } from 'ghtml';
-import type data from '../../src/data/cv.json';
+import type data from '@/data/cv.json';
 
 type Cv = typeof data;
 type Position = Cv['positions'][number];

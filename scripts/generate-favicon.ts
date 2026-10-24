@@ -2,15 +2,14 @@
 // of truth: "IB" set in IBM Plex Mono Bold, centered in a black circle on a
 // transparent field (matching the site's actual font, not an approximation).
 //
-// Re-run with: node scripts/generate-favicon.mjs
+// Re-run with: tsx scripts/generate-favicon.ts
 import { readFileSync, writeFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import opentype from 'opentype.js';
 import { Resvg } from '@resvg/resvg-js';
+import type { Font, PathCommand } from 'opentype.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(import.meta.dirname, '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 
 const FONT_PATH = path.join(
@@ -34,7 +33,7 @@ const loadFont = () => {
   return opentype.parse(buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength));
 };
 
-const getTextPathAndBounds = (font, fontSize) => {
+const getTextPathAndBounds = (font: Font, fontSize: number) => {
   const path = font.getPath(TEXT, 0, 0, fontSize);
   const bbox = path.getBoundingBox();
   return { path, bbox };
@@ -42,7 +41,7 @@ const getTextPathAndBounds = (font, fontSize) => {
 
 // Render the glyph path data at whatever font size makes it hit the target
 // width, then translate it so its bounding box sits centered on the canvas.
-const buildCenteredTextPathData = (font) => {
+const buildCenteredTextPathData = (font: Font) => {
   const circleDiameter = CANVAS_SIZE - CIRCLE_MARGIN * 2;
   const targetWidth = circleDiameter * TEXT_WIDTH_RATIO;
 
@@ -57,13 +56,15 @@ const buildCenteredTextPathData = (font) => {
   const offsetY = CANVAS_SIZE / 2 - (bbox.y1 + height / 2);
 
   path.commands = path.commands.map((command) => {
-    const translated = { ...command };
+    const translated: Record<string, unknown> = { ...command };
     for (const key of ['x', 'y', 'x1', 'y1', 'x2', 'y2']) {
-      if (typeof translated[key] === 'number') {
-        translated[key] += key.startsWith('x') ? offsetX : offsetY;
+      const value = translated[key];
+      if (typeof value === 'number') {
+        translated[key] = value + (key.startsWith('x') ? offsetX : offsetY);
       }
     }
-    return translated;
+
+    return translated as PathCommand;
   });
 
   return path.toPathData(3);
@@ -73,7 +74,7 @@ const circleCx = CANVAS_SIZE / 2;
 const circleCy = CANVAS_SIZE / 2;
 const circleR = CANVAS_SIZE / 2 - CIRCLE_MARGIN;
 
-const buildColorSvg = (textPathData) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CANVAS_SIZE} ${CANVAS_SIZE}">
+const buildColorSvg = (textPathData: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CANVAS_SIZE} ${CANVAS_SIZE}">
   <circle cx="${circleCx}" cy="${circleCy}" r="${circleR}" fill="${BLACK}" />
   <path d="${textPathData}" fill="${WHITE}" />
 </svg>
@@ -82,7 +83,7 @@ const buildColorSvg = (textPathData) => `<svg xmlns="http://www.w3.org/2000/svg"
 // Safari's mask-icon must be a single silhouette: the letters become
 // transparent cutouts in the circle (evenodd), so whichever accent color
 // Safari applies still reads correctly through the tab bar.
-const buildMaskSvg = (circlePathData, textPathData) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CANVAS_SIZE} ${CANVAS_SIZE}">
+const buildMaskSvg = (circlePathData: string, textPathData: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CANVAS_SIZE} ${CANVAS_SIZE}">
   <path fill-rule="evenodd" d="${circlePathData} ${textPathData}" />
 </svg>
 `;
@@ -93,7 +94,7 @@ const circleAsPathData = () => {
   return `M ${circleCx - r},${circleCy} a ${r},${r} 0 1 0 ${r * 2},0 a ${r},${r} 0 1 0 ${-r * 2},0 Z`;
 };
 
-const rasterize = (svg, size) => {
+const rasterize = (svg: string, size: number) => {
   const resvg = new Resvg(svg, {
     fitTo: { mode: 'width', value: size },
     background: 'rgba(0,0,0,0)',
@@ -104,21 +105,19 @@ const rasterize = (svg, size) => {
 // Builds an .ico by embedding complete PNG files as frames, rather than
 // decoding to raw pixels and re-encoding as legacy BMP (which has a more
 // limited, ambiguous alpha representation).
-const buildIco = (pngsBySize) => {
-  const sizes = [...pngsBySize.keys()];
+const buildIco = (pngsBySize: Map<number, Buffer>) => {
   const HEADER_SIZE = 6;
   const DIR_ENTRY_SIZE = 16;
 
   const header = Buffer.alloc(HEADER_SIZE);
   header.writeUInt16LE(0, 0); // reserved
   header.writeUInt16LE(1, 2); // type: icon
-  header.writeUInt16LE(sizes.length, 4);
+  header.writeUInt16LE(pngsBySize.size, 4);
 
-  let offset = HEADER_SIZE + DIR_ENTRY_SIZE * sizes.length;
-  const dirEntries = [];
+  let offset = HEADER_SIZE + DIR_ENTRY_SIZE * pngsBySize.size;
+  const dirEntries: Buffer[] = [];
 
-  for (const size of sizes) {
-    const png = pngsBySize.get(size);
+  for (const [size, png] of pngsBySize) {
     const entry = Buffer.alloc(DIR_ENTRY_SIZE);
     entry.writeUInt8(size >= 256 ? 0 : size, 0); // width (0 means 256)
     entry.writeUInt8(size >= 256 ? 0 : size, 1); // height (0 means 256)
@@ -132,15 +131,15 @@ const buildIco = (pngsBySize) => {
     offset += png.length;
   }
 
-  return Buffer.concat([header, ...dirEntries, ...sizes.map((size) => pngsBySize.get(size))]);
+  return Buffer.concat([header, ...dirEntries, ...pngsBySize.values()]);
 };
 
-const writePublicFile = (name, contents) => {
+const writePublicFile = (name: string, contents: string | Buffer) => {
   writeFileSync(path.join(PUBLIC_DIR, name), contents);
   console.log('wrote', name);
 };
 
-const main = async () => {
+const main = () => {
   const font = loadFont();
   const textPathData = buildCenteredTextPathData(font);
   const circlePathData = circleAsPathData();
@@ -152,29 +151,38 @@ const main = async () => {
   writePublicFile('safari-pinned-tab.svg', maskSvg);
 
   const pngSizes = [16, 32, 48, 96, 120, 128, 150, 152, 167, 180, 192, 256, 512];
-  const pngBuffers = new Map();
+  const pngBuffers = new Map<number, Buffer>();
 
   for (const size of pngSizes) {
     const buffer = rasterize(colorSvg, size);
     pngBuffers.set(size, buffer);
   }
 
-  writePublicFile('favicon-16x16.png', pngBuffers.get(16));
-  writePublicFile('favicon-32x32.png', pngBuffers.get(32));
-  writePublicFile('favicon-96x96.png', pngBuffers.get(96));
-  writePublicFile('apple-touch-icon.png', pngBuffers.get(180));
+  const getPng = (size: number) => {
+    const buffer = pngBuffers.get(size);
+    if (!buffer) {
+      throw new Error(`No ${size}px PNG rendered: add it to pngSizes`);
+    }
+
+    return buffer;
+  };
+
+  writePublicFile('favicon-16x16.png', getPng(16));
+  writePublicFile('favicon-32x32.png', getPng(32));
+  writePublicFile('favicon-96x96.png', getPng(96));
+  writePublicFile('apple-touch-icon.png', getPng(180));
   // Legacy convention some iOS/Safari versions probe for implicitly, regardless
   // of any <link> tag, to opt out of the (long-removed) automatic gloss effect.
-  writePublicFile('apple-touch-icon-precomposed.png', pngBuffers.get(180));
-  writePublicFile('apple-touch-icon-120x120.png', pngBuffers.get(120));
-  writePublicFile('apple-touch-icon-152x152.png', pngBuffers.get(152));
-  writePublicFile('apple-touch-icon-167x167.png', pngBuffers.get(167));
-  writePublicFile('android-chrome-192x192.png', pngBuffers.get(192));
-  writePublicFile('android-chrome-512x512.png', pngBuffers.get(512));
-  writePublicFile('mstile-150x150.png', pngBuffers.get(150));
+  writePublicFile('apple-touch-icon-precomposed.png', getPng(180));
+  writePublicFile('apple-touch-icon-120x120.png', getPng(120));
+  writePublicFile('apple-touch-icon-152x152.png', getPng(152));
+  writePublicFile('apple-touch-icon-167x167.png', getPng(167));
+  writePublicFile('android-chrome-192x192.png', getPng(192));
+  writePublicFile('android-chrome-512x512.png', getPng(512));
+  writePublicFile('mstile-150x150.png', getPng(150));
 
   const icoBuffer = buildIco(
-    new Map([16, 32, 48, 128, 256].map((size) => [size, pngBuffers.get(size)])),
+    new Map([16, 32, 48, 128, 256].map((size) => [size, getPng(size)])),
   );
   writePublicFile('favicon.ico', icoBuffer);
 
@@ -206,4 +214,4 @@ const main = async () => {
   console.log('\nDone.');
 };
 
-await main();
+main();
