@@ -59,11 +59,23 @@ export interface CvContact {
   github: string;
   stackOverflow: string;
   devTo: string;
+  website: string;
 }
 
 export interface CvLanguage {
   name: string;
   proficiency: string;
+}
+
+export interface CvStats {
+  stackOverflow: {
+    reputation: number;
+  };
+}
+
+export interface CvOpenSourceContribution {
+  name: string;
+  url: string;
 }
 
 export interface CvProfile {
@@ -76,8 +88,12 @@ export interface CvProfile {
   topSkills: string[];
   personality: string[];
   honors: string[];
-  stackOverflowReputation: string;
-  openSourceContributions: string[];
+  stats: CvStats;
+  /** The CV's opening bullets. */
+  highlights: string[];
+  /** One string per CV line, e.g. "Node.js, Express, NestJS". */
+  mainTech: string[];
+  openSourceContributions: CvOpenSourceContribution[];
   upNext: string[];
 }
 

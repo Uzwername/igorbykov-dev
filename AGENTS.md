@@ -9,7 +9,7 @@ Personal portfolio/CV site for Igor Bykov (senior full stack engineer, Barcelona
 - `content.md` — drafted copy for every planned page/section. Match its **exact** wording/casing: "full stack" never "full-stack"; British spellings throughout ("organised", "modernised", "standardised").
 - `design.md` — design brief: clean → simple → plain → minimal, explicitly **not** Apple-style polish, references GitHub / GitHub Actions UI / reshaped.so / Docker Desktop, "deeply technical & somewhat raw".
 - `structure.txt` — sitemap and page sections, including the CV page filters (Part/Full time, Contractor/Employee, Technology, Industry).
-- `cv-igor-bykov.pdf`, `linkedin-export.pdf` — already parsed into `src/data/cv.json` (see below). LinkedIn is the more current/complete source; the CV PDF is stale (missing the current `eSIM Go` role, collapses two separate RepeatMD positions into one).
+- `cv-igor-bykov.pdf`, `linkedin-export.pdf` — already parsed into `src/data/cv.json` (see below). LinkedIn is the more current/complete source. The CV PDF here is the hand-made original that the generated one (`public/cv-igor-bykov.pdf`, see "CV PDF") was ported from. Reference only: never overwrite.
 
 ## Stack
 
@@ -78,6 +78,52 @@ Settled findings, don't redo this investigation:
 ## CV data (`src/data/cv.json` + `src/types/cv.ts`)
 
 Normalized, shaped like a real API response: `companies[]` (`id`, `name`, `industry: string[]`, `website`) referenced by `companyId` from `positions[]` — so multi-position companies (RepeatMD, Suitaprest each have two) don't duplicate company data — plus `profile` and `education`. Reconciled from both source PDFs, LinkedIn treated as primary. Industries and websites for real companies were verified via live web search, not guessed (one correction already made and worth remembering: **Suitaprest is financial services / private mortgage lending, not fashion** — don't re-guess from the name alone). `techStack` is per-position with dates and is deliberately *not* pre-aggregated into a single "top tech" list — any such ranking (e.g. "most-mentioned tech across the 5 most recent positions", mentioned as a future CV-page feature) should be computed from this raw data by the page itself, not baked into the JSON.
+
+It is the single source of truth for the site **and** the CV PDF, and is published as-is at `/cv.json` (`public/cv.json` is a copy written by `scripts/generate-cv.ts`; never edit it by hand). It's a **superset** of the PDF, which shows only parts of it because two A4 pages are a hard limit.
+
+Content rules:
+- **JSON wins.** Code prints JSON text exactly as written: no rewording, picking, reordering, merging or adding punctuation in code. If the content should change, change the JSON.
+- **No trailing full stops** on bullet-like strings (highlights, achievements, etc.).
+- **Order lives in the JSON; never sort in code.** `positions` and `companies` (in the order each company's first role appears): current roles (`endDate: null`) first, `full-time` before `part-time` among those, then `companyId` alphabetically; past roles follow, most recent first.
+- **Every role is its own entry** with its own title and dates; don't collapse roles. A role with empty `achievements` (e.g. the just-started eSIM Go) renders as its heading only, with no placeholder text.
+- **Shape:** prefer structured, reusable shapes over one-off display strings, e.g. `profile.stats.stackOverflow.reputation: 2800` (not `"2.8K+"`), `profile.openSourceContributions: [{ name, url }]`.
+- `profile.highlights` (the CV's opening bullets) and `profile.mainTech` (one string per CV line, e.g. `"Node.js, Express, NestJS"`) are CV-specific.
+- **Confirmed by the user, even though they look odd:** eSIM Go's `website` is `https://breezesim.com`; the Freelance company is just `"Freelance"`; ModelManagement is `"ModelManagement"` (no `.com`); the `mkdir-tree` contribution links to the `Uzwername/directory-tree-from-scheme` repo.
+
+## CV PDF (`scripts/generate-cv.ts`)
+
+`node scripts/generate-cv.ts` (`pnpm assets:generate:cv`; `pnpm assets:generate` regenerates every generated asset) renders `src/data/cv.json` to HTML and prints it via `puppeteer-core` driving the locally installed Google Chrome (`channel: 'chrome'`, no browser download) to `public/cv-igor-bykov.pdf`, then copies the JSON to `public/cv.json`. Served at `/cv-igor-bykov.pdf`, with `/cv.pdf` redirecting there (see `_redirects`).
+
+- `scripts/cv/layout.ts`: which blocks go on which page; `{ positions: n }` takes the next n roles. Checked against `Layout` from the template (`satisfies Layout`). `scripts/cv/template.ts`: markup, i.e. block renderers (`contact`, `web`, `mainTech`, `contributions`, `upNext`, `personality`, `languages`, `education`, `highlights`) plus role entries. `scripts/cv/styles.css`: print stylesheet, inlined into the HTML.
+- Unlike the other scripts, these are **TypeScript run directly by Node** (native type stripping, no compile step): erasable syntax only (no enums/namespaces/parameter properties), `import type` for types, explicit `.ts` extensions and relative paths (Node can't resolve `@/`). The template types `cv.json` via `typeof` its import, not via `src/types/cv.ts`.
+- The HTML exists only to become the PDF and is never written to disk: screen styles, responsiveness etc. are irrelevant.
+- **Verify visually** after every content or layout change: regenerate, read `public/cv-igor-bykov.pdf` and check the page count. Nothing warns about overflow.
+
+Layout rules:
+- **Exactly 2 A4 pages; never 3.** What doesn't fit is covered by the "View more on LinkedIn" footer at the end of page 2. When content grows, rebalance the `{ positions: n }` counts or let the oldest roles drop off the end. When content and layout conflict, surface the trade-off rather than silently editing content.
+- Page 1: title, sidebar (Contact info, On the Web, Main tech, Contributions, Up next) and main (highlights, then roles). Page 2: sidebar (Personality, Languages, Education) and main (roles, then the footer).
+- **Footer:** inside `<main>`, centred relative to the main column (not the page). The whole text "View more on LinkedIn" is the link.
+- **Contact / On the Web:** label line, link line, blank line, as in the original. Icons in place of the labels were tried and rejected as ugly; don't reintroduce them.
+- **Link text** is derived from the URLs in `profile.contact` (`/in/igor-bykov/`, `@Uzwername`, `/users/9430588/`, `@igor_bykov`). Links keep their full URLs in the PDF.
+
+Design (deliberately separate from the site's design system):
+- **Fonts:** headings in Courier New, body in Avenir **Book** at 8pt. A local `@font-face` pins `Avenir-Book`, because plain `Avenir` resolves to Roman on macOS. macOS-only font binding is fine.
+- **Colours:** white on black. Underlines stay full white.
+- **Vertical rhythm:** every gap is a multiple of `--line` (11pt): heading → body 1 line, between sections 2, title → columns 2.
+- **Grid:** two columns, sidebar `--side` (106pt) + `--gutter` (12pt), with 60pt side margins. Headings never wrap (`white-space: nowrap`); long ones may run into the right margin, as in the original.
+- **Spirit:** use the Web platform's strengths (grid, `@page`, `list-style` markers, `text-wrap: pretty`) and accept small differences from the original. Pixel-identity is **not** a goal, and measured or hand-tuned hacks are unwelcome. If a refinement needs a hack, it's usually not worth it; say so instead.
+
+Chrome print quirks (learned the hard way):
+- Anything painted inside `@page` margins is **clipped**, so side margins are `padding-inline` on `body` and `@page` only has vertical margins. `@page { background }` is needed, or the page margins print white.
+- `text-decoration-thickness` can't go below **1px** (0.75pt). A thinner underline would need a background-gradient hack, which the user declined.
+- Line boxes snap to whole CSS pixels (11pt = 14.67px). A 3× zoom plus ⅓ print-scale trick fixed that but was removed as too hacky; the sub-point jitter is accepted.
+- An `<svg hidden>` sprite still takes up its default 300×150 size; use `display: none` if a sprite is ever needed.
+
+Template conventions (`ghtml`):
+- `` html`…${x}…` `` escapes `x`. Embed already-rendered HTML (nested `html` calls, arrays of them, the CSS) with `!${…}`.
+- ghtml turns `false` into the text "false", so conditionals must give `''`. It joins arrays with no separator.
+- Layout mistakes (unknown block name, missing position or company) fail loudly via `fail()`, never render silently.
+- Prefer destructuring, e.g. `({ profile: { contact: { email } } })`, `({ id }) => …`.
 
 ## Not yet built
 

@@ -6,7 +6,7 @@
   },
   "profile": {
     "name": "Igor Bykov",
-    "headline": "Full stack software engineer",
+    "headline": "Full Stack Software Engineer",
     "location": "Barcelona, Catalonia, Spain",
     "summary": "I like to tackle complex problems, take ownership, make things work, constantly learn, share my experience & always strive to find an effective solution for every problem. From my very first line of code to right now, I've always been driven by curiosity, fascinated by the incredible things technology enables & eager to constantly learn and grow.",
     "contact": {
@@ -15,12 +15,13 @@
       "linkedin": "https://www.linkedin.com/in/igor-bykov",
       "github": "https://github.com/Uzwername",
       "stackOverflow": "https://stackoverflow.com/users/9430588/igor-bykov",
-      "devTo": "https://dev.to/igor_bykov"
+      "devTo": "https://dev.to/igor_bykov",
+      "website": "https://igorbykov.dev"
     },
     "languages": [
-      { "name": "Russian", "proficiency": "Native or bilingual" },
-      { "name": "English", "proficiency": "Full professional" },
-      { "name": "Spanish", "proficiency": "Full professional" }
+      { "name": "English", "proficiency": "Advanced" },
+      { "name": "Spanish", "proficiency": "Advanced" },
+      { "name": "Russian", "proficiency": "Native" }
     ],
     "topSkills": ["Systems Design", "Software Architecture", "Full-Stack Development"],
     "personality": [
@@ -35,36 +36,60 @@
       "Straight, clear & transparent in communication"
     ],
     "honors": ["Magna cum laude"],
-    "stackOverflowReputation": "2.8K+",
-    "openSourceContributions": [
-      "material-ui",
-      "mdn/content",
-      "DefinitelyTyped",
-      "reactstrap",
-      "jest-extended",
-      "mkdir-tree",
-      "react-online-hook"
+    "stats": {
+      "stackOverflow": { "reputation": 2800 }
+    },
+    "highlights": [
+      "8+ years of full-time professional experience building & continuously improving software serving millions of users and generating multimillion-dollar revenue",
+      "Product mindset, user-centricity, extreme ownership and deep care of overall UX are built in",
+      "Built projects from non-technical stakeholder input to paying customers and beyond",
+      "Built systems serving as the backbone of entire businesses within teams & as a solo eng",
+      "Most experienced in PERN & LAMP but quick to pick up new tooling",
+      "A strong team-player at core with a very collaborative, 0-hierarchy leadership style",
+      "StackOverflow 2.8K+",
+      "Self-taught"
     ],
-    "upNext": ["React Native", "In-depth Docker & Terraform", "Data analytics in Python", "Go"]
+    "mainTech": [
+      "TypeScript, JavaScript",
+      "React",
+      "Node.js, Express, NestJS",
+      "REST, GraphQL",
+      "Next.js, Remix",
+      "AWS, GCP, Heroku",
+      "PostgreSQL, MySQL, SQLite",
+      "NoSQL DBs, Firebase, DynamoDB, MongoDB",
+      "PHP",
+      "Claude Code"
+    ],
+    "openSourceContributions": [
+      { "name": "material-ui", "url": "https://github.com/mui/material-ui" },
+      { "name": "mdn/content", "url": "https://github.com/mdn/content" },
+      { "name": "DefinitelyTyped", "url": "https://github.com/DefinitelyTyped/DefinitelyTyped" },
+      { "name": "reactstrap", "url": "https://github.com/reactstrap/reactstrap" },
+      { "name": "jest-extended", "url": "https://github.com/jest-community/jest-extended" },
+      { "name": "mkdir-tree", "url": "https://github.com/Uzwername/directory-tree-from-scheme" },
+      { "name": "react-online-hook", "url": "https://github.com/Uzwername/react-online-hook" }
+    ],
+    "upNext": ["In-depth Docker & Terraform", "Data analytics in Python", "Go"]
   },
   "companies": [
     {
       "id": "esim-go",
       "name": "eSIM Go",
       "industry": ["Telecom", "Travel Tech"],
-      "website": "https://esim-go.com"
+      "website": "https://breezesim.com"
+    },
+    {
+      "id": "freelance-web-development",
+      "name": "Freelance",
+      "industry": ["Various (freelance)"],
+      "website": null
     },
     {
       "id": "repeatmd",
       "name": "RepeatMD",
       "industry": ["Healthcare", "Wellness", "SaaS", "E-commerce"],
       "website": "https://repeatmd.com"
-    },
-    {
-      "id": "freelance-web-development",
-      "name": "Freelance Web Development",
-      "industry": ["Various (freelance)"],
-      "website": null
     },
     {
       "id": "smol",
@@ -86,7 +111,7 @@
     },
     {
       "id": "modelmanagement",
-      "name": "ModelManagement.com",
+      "name": "ModelManagement",
       "industry": ["Fashion", "Modelling", "Marketplace"],
       "website": "https://www.modelmanagement.com"
     },
@@ -130,6 +155,81 @@
       "techStack": [],
       "achievements": [],
       "skillsGained": { "soft": [], "hard": [] }
+    },
+    {
+      "id": "freelance-web-development",
+      "companyId": "freelance-web-development",
+      "title": "Web Developer & Consultant",
+      "location": "Barcelona",
+      "employmentType": "part-time",
+      "contractType": "contractor",
+      "startDate": "2016-04",
+      "endDate": null,
+      "summary": "Few long-term, async, part-time collaborations with small-to-medium-sized companies that I do outside of working hours. I usually act on raw, non-technical business needs and wear as many hats as needed to get the job done, whether that means fixing minor CSS issues, coordinating IT teams, defining a long-term roadmap or architecting entire systems. I've been involved in some of these collaborations for 10+ years and had a chance to grow & evolve alongside them.",
+      "responsibilities": [
+        "Full stack development",
+        "Software design & architecture",
+        "Systems integration",
+        "QA & automated testing",
+        "Systems monitoring & incident response",
+        "Bug resolution",
+        "Technical strategy definition",
+        "DX & development processes automation",
+        "Maintenance"
+      ],
+      "techStack": [
+        "JavaScript",
+        "TypeScript",
+        "Python",
+        "PHP",
+        "Node.js",
+        "AWS",
+        "GCP",
+        "Datadog",
+        "Sentry",
+        "NPM & modern JS tooling",
+        "React",
+        "Next.js",
+        "Nest.js",
+        "Jest",
+        "Playwright",
+        "Webpack",
+        "WordPress"
+      ],
+      "achievements": [
+        "Generated $1M+ overall via integrations, automation, stronger data integrity & new features",
+        "Cut infra & hosting costs up to 60% across multiple orgs",
+        "Decreased delivery time by up to 80%",
+        "Modernised several major projects, boosting performance & uptime up to 11x",
+        "Boosted productivity ~10% through automation of business operations using cloud infrastructure & custom tooling",
+        "Cumulatively saved 5+ years of manual work through systems integration",
+        "Launched 10+ new projects with steady YoY revenue growth"
+      ],
+      "skillsGained": {
+        "soft": [
+          "Self-management",
+          "Remote collaboration",
+          "Direct stakeholder collaboration",
+          "Project management",
+          "Ideation & collaboration",
+          "Managing high-level tasks"
+        ],
+        "hard": [
+          "Systems integration",
+          "AI integration",
+          "Process automation",
+          "Jest",
+          "Playwright",
+          "Node.js",
+          "Nest.js",
+          "Python",
+          "PHP",
+          "Next.js",
+          "Observability",
+          "Cloud (AWS, GCP) tooling",
+          "Cloud (AWS, GCP) administration"
+        ]
+      }
     },
     {
       "id": "repeatmd-squad-leader",
@@ -251,81 +351,6 @@
           "BDD",
           "Gherkin",
           "Cucumber"
-        ]
-      }
-    },
-    {
-      "id": "freelance-web-development",
-      "companyId": "freelance-web-development",
-      "title": "Web developer & consultant",
-      "location": "Barcelona",
-      "employmentType": "part-time",
-      "contractType": "contractor",
-      "startDate": "2016-04",
-      "endDate": null,
-      "summary": "Few long-term, async, part-time collaborations with small-to-medium-sized companies that I do outside of working hours. I usually act on raw, non-technical business needs and wear as many hats as needed to get the job done, whether that means fixing minor CSS issues, coordinating IT teams, defining a long-term roadmap or architecting entire systems. I've been involved in some of these collaborations for 10+ years and had a chance to grow & evolve alongside them.",
-      "responsibilities": [
-        "Full stack development",
-        "Software design & architecture",
-        "Systems integration",
-        "QA & automated testing",
-        "Systems monitoring & incident response",
-        "Bug resolution",
-        "Technical strategy definition",
-        "DX & development processes automation",
-        "Maintenance"
-      ],
-      "techStack": [
-        "JavaScript",
-        "TypeScript",
-        "Python",
-        "PHP",
-        "Node.js",
-        "AWS",
-        "GCP",
-        "Datadog",
-        "Sentry",
-        "NPM & modern JS tooling",
-        "React",
-        "Next.js",
-        "Nest.js",
-        "Jest",
-        "Playwright",
-        "Webpack",
-        "WordPress"
-      ],
-      "achievements": [
-        "Generated $1M+ overall via integrations, automation, stronger data integrity & new features",
-        "Cut infra & hosting costs up to 60% across multiple orgs",
-        "Decreased delivery time by up to 80%",
-        "Modernised several major projects, boosting performance & uptime up to 11x",
-        "Boosted productivity ~10% through automation of business operations using cloud infrastructure & custom tooling",
-        "Cumulatively saved 5+ years of manual work through systems integration",
-        "Launched 10+ new projects with steady YoY revenue growth"
-      ],
-      "skillsGained": {
-        "soft": [
-          "Self-management",
-          "Remote collaboration",
-          "Direct stakeholder collaboration",
-          "Project management",
-          "Ideation & collaboration",
-          "Managing high-level tasks"
-        ],
-        "hard": [
-          "Systems integration",
-          "AI integration",
-          "Process automation",
-          "Jest",
-          "Playwright",
-          "Node.js",
-          "Nest.js",
-          "Python",
-          "PHP",
-          "Next.js",
-          "Observability",
-          "Cloud (AWS, GCP) tooling",
-          "Cloud (AWS, GCP) administration"
         ]
       }
     },
@@ -677,7 +702,7 @@
     {
       "id": "universitat-de-barcelona-real-estate-master",
       "institution": "Universitat de Barcelona",
-      "degree": "Master degree in management, promotion & advisory in real estate",
+      "degree": "Master's Degree in Management, Promotion & Advisory in Real Estate",
       "field": "Real Estate",
       "startDate": "2017-09",
       "endDate": "2018-06",

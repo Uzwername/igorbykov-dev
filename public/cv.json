@@ -1,0 +1,721 @@
+{
+  "meta": {
+    "updatedAt": "2026-09-30",
+    "source": "self-reported",
+    "version": 1
+  },
+  "profile": {
+    "name": "Igor Bykov",
+    "headline": "Full Stack Software Engineer",
+    "location": "Barcelona, Catalonia, Spain",
+    "summary": "I like to tackle complex problems, take ownership, make things work, constantly learn, share my experience & always strive to find an effective solution for every problem. From my very first line of code to right now, I've always been driven by curiosity, fascinated by the incredible things technology enables & eager to constantly learn and grow.",
+    "contact": {
+      "email": "igor.bykov@protonmail.com",
+      "phone": "+34 663 423 148",
+      "linkedin": "https://www.linkedin.com/in/igor-bykov",
+      "github": "https://github.com/Uzwername",
+      "stackOverflow": "https://stackoverflow.com/users/9430588/igor-bykov",
+      "devTo": "https://dev.to/igor_bykov",
+      "website": "https://igorbykov.dev"
+    },
+    "languages": [
+      { "name": "English", "proficiency": "Advanced" },
+      { "name": "Spanish", "proficiency": "Advanced" },
+      { "name": "Russian", "proficiency": "Native" }
+    ],
+    "topSkills": ["Systems Design", "Software Architecture", "Full-Stack Development"],
+    "personality": [
+      "Autonomous & independent",
+      "Comfortable taking decisions",
+      "Comfortable working through uncertainties",
+      "Strong sense of ownership",
+      "Quality focused",
+      "Thorough",
+      "Fast learning",
+      "Always ready to both learn & share knowledge",
+      "Straight, clear & transparent in communication"
+    ],
+    "honors": ["Magna cum laude"],
+    "stats": {
+      "stackOverflow": { "reputation": 2800 }
+    },
+    "highlights": [
+      "8+ years of full-time professional experience building & continuously improving software serving millions of users and generating multimillion-dollar revenue",
+      "Product mindset, user-centricity, extreme ownership and deep care of overall UX are built in",
+      "Built projects from non-technical stakeholder input to paying customers and beyond",
+      "Built systems serving as the backbone of entire businesses within teams & as a solo eng",
+      "Most experienced in PERN & LAMP but quick to pick up new tooling",
+      "A strong team-player at core with a very collaborative, 0-hierarchy leadership style",
+      "StackOverflow 2.8K+",
+      "Self-taught"
+    ],
+    "mainTech": [
+      "TypeScript, JavaScript",
+      "React",
+      "Node.js, Express, NestJS",
+      "REST, GraphQL",
+      "Next.js, Remix",
+      "AWS, GCP, Heroku",
+      "PostgreSQL, MySQL, SQLite",
+      "NoSQL DBs, Firebase, DynamoDB, MongoDB",
+      "PHP",
+      "Claude Code"
+    ],
+    "openSourceContributions": [
+      { "name": "material-ui", "url": "https://github.com/mui/material-ui" },
+      { "name": "mdn/content", "url": "https://github.com/mdn/content" },
+      { "name": "DefinitelyTyped", "url": "https://github.com/DefinitelyTyped/DefinitelyTyped" },
+      { "name": "reactstrap", "url": "https://github.com/reactstrap/reactstrap" },
+      { "name": "jest-extended", "url": "https://github.com/jest-community/jest-extended" },
+      { "name": "mkdir-tree", "url": "https://github.com/Uzwername/directory-tree-from-scheme" },
+      { "name": "react-online-hook", "url": "https://github.com/Uzwername/react-online-hook" }
+    ],
+    "upNext": ["In-depth Docker & Terraform", "Data analytics in Python", "Go"]
+  },
+  "companies": [
+    {
+      "id": "esim-go",
+      "name": "eSIM Go",
+      "industry": ["Telecom", "Travel Tech"],
+      "website": "https://breezesim.com"
+    },
+    {
+      "id": "freelance-web-development",
+      "name": "Freelance",
+      "industry": ["Various (freelance)"],
+      "website": null
+    },
+    {
+      "id": "repeatmd",
+      "name": "RepeatMD",
+      "industry": ["Healthcare", "Wellness", "SaaS", "E-commerce"],
+      "website": "https://repeatmd.com"
+    },
+    {
+      "id": "smol",
+      "name": "smol",
+      "industry": ["E-commerce", "Consumer Goods"],
+      "website": "https://smol.com"
+    },
+    {
+      "id": "devo",
+      "name": "Devo",
+      "industry": ["Cybersecurity", "Data Analytics"],
+      "website": "https://www.devo.com"
+    },
+    {
+      "id": "opticks-security",
+      "name": "Opticks Security",
+      "industry": ["Cybersecurity", "AdTech"],
+      "website": "https://optickssecurity.com"
+    },
+    {
+      "id": "modelmanagement",
+      "name": "ModelManagement",
+      "industry": ["Fashion", "Modelling", "Marketplace"],
+      "website": "https://www.modelmanagement.com"
+    },
+    {
+      "id": "suitaprest",
+      "name": "Suitaprest",
+      "industry": ["Financial Services", "FinTech"],
+      "website": "https://suitaprest.com"
+    },
+    {
+      "id": "molismedia",
+      "name": "Molismedia",
+      "industry": ["Digital Marketing", "Web Agency"],
+      "website": "https://molismedia.com"
+    },
+    {
+      "id": "real-estate-startup",
+      "name": "An early-stage real estate startup",
+      "industry": ["Real Estate"],
+      "website": null
+    },
+    {
+      "id": "freelance-marketing-creative",
+      "name": "Freelance Marketing and Creative Services",
+      "industry": ["Marketing", "Design"],
+      "website": null
+    }
+  ],
+  "positions": [
+    {
+      "id": "esim-go-full-stack-engineer",
+      "companyId": "esim-go",
+      "title": "Full Stack Engineer",
+      "location": "Barcelona",
+      "employmentType": "full-time",
+      "contractType": "employee",
+      "startDate": "2026-09",
+      "endDate": null,
+      "summary": null,
+      "responsibilities": [],
+      "techStack": [],
+      "achievements": [],
+      "skillsGained": { "soft": [], "hard": [] }
+    },
+    {
+      "id": "freelance-web-development",
+      "companyId": "freelance-web-development",
+      "title": "Web Developer & Consultant",
+      "location": "Barcelona",
+      "employmentType": "part-time",
+      "contractType": "contractor",
+      "startDate": "2016-04",
+      "endDate": null,
+      "summary": "Few long-term, async, part-time collaborations with small-to-medium-sized companies that I do outside of working hours. I usually act on raw, non-technical business needs and wear as many hats as needed to get the job done, whether that means fixing minor CSS issues, coordinating IT teams, defining a long-term roadmap or architecting entire systems. I've been involved in some of these collaborations for 10+ years and had a chance to grow & evolve alongside them.",
+      "responsibilities": [
+        "Full stack development",
+        "Software design & architecture",
+        "Systems integration",
+        "QA & automated testing",
+        "Systems monitoring & incident response",
+        "Bug resolution",
+        "Technical strategy definition",
+        "DX & development processes automation",
+        "Maintenance"
+      ],
+      "techStack": [
+        "JavaScript",
+        "TypeScript",
+        "Python",
+        "PHP",
+        "Node.js",
+        "AWS",
+        "GCP",
+        "Datadog",
+        "Sentry",
+        "NPM & modern JS tooling",
+        "React",
+        "Next.js",
+        "Nest.js",
+        "Jest",
+        "Playwright",
+        "Webpack",
+        "WordPress"
+      ],
+      "achievements": [
+        "Generated $1M+ overall via integrations, automation, stronger data integrity & new features",
+        "Cut infra & hosting costs up to 60% across multiple orgs",
+        "Decreased delivery time by up to 80%",
+        "Modernised several major projects, boosting performance & uptime up to 11x",
+        "Boosted productivity ~10% through automation of business operations using cloud infrastructure & custom tooling",
+        "Cumulatively saved 5+ years of manual work through systems integration",
+        "Launched 10+ new projects with steady YoY revenue growth"
+      ],
+      "skillsGained": {
+        "soft": [
+          "Self-management",
+          "Remote collaboration",
+          "Direct stakeholder collaboration",
+          "Project management",
+          "Ideation & collaboration",
+          "Managing high-level tasks"
+        ],
+        "hard": [
+          "Systems integration",
+          "AI integration",
+          "Process automation",
+          "Jest",
+          "Playwright",
+          "Node.js",
+          "Nest.js",
+          "Python",
+          "PHP",
+          "Next.js",
+          "Observability",
+          "Cloud (AWS, GCP) tooling",
+          "Cloud (AWS, GCP) administration"
+        ]
+      }
+    },
+    {
+      "id": "repeatmd-squad-leader",
+      "companyId": "repeatmd",
+      "title": "Squad Leader",
+      "location": "Barcelona",
+      "employmentType": "full-time",
+      "contractType": "employee",
+      "startDate": "2025-02",
+      "endDate": "2026-02",
+      "summary": "This was a technical, hands-on engineering role with some managerial & leadership aspects mainly related to mentoring, keeping the team focused on current priorities & ensuring we always have work readily available to pick up. The newly formed squad I led was responsible for checkout, payment processing & payouts, and subsequently got heavily involved in major integration- & AI-based features development.",
+      "responsibilities": [
+        "Full stack development",
+        "Software design & architecture",
+        "Systems integration",
+        "QA & automated testing",
+        "Bug resolution",
+        "Microservices & DDD migration",
+        "Onboarding, mentoring & team management",
+        "Systems monitoring & incident response",
+        "DX & development processes automation"
+      ],
+      "techStack": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "RabbitMQ",
+        "AWS SQS",
+        "AWS EventBridge",
+        "Segment",
+        "Algolia"
+      ],
+      "achievements": [
+        "Saved 200+ hours of development & debugging time by thoroughly clarifying requirements & priorities on all levels, including collaboration with direct stakeholders & executive sponsors",
+        "Implemented Salesforce & NetSuite integrations to unlock back-office data-driven features & shorten the average collection period by 30%",
+        "Built the backend of an async AI-based pipeline that cut demo preparation time for the CX team from hours to minutes",
+        "Designed & built several AI-based features, pipelines and automations that cumulatively saved about 1 hour per day for each CX agent",
+        "Ran a large, AI-assisted refactor of the BDD test suite, fixing most sources of flakiness & decreasing false-positive CI failures by 70%",
+        "Architected an Algolia integration that significantly improved search UX & introduced search analytics that increased sales by 4% per platform on average",
+        "Drove a complete restructuring of the multi-tenant admin experience to save enterprise users hours of work per year",
+        "Onboarded 5 new members of the team & mentored 3 engineers",
+        "Documented several important internal flows, saving hours in local setup & testing"
+      ],
+      "skillsGained": {
+        "soft": ["Direct stakeholder collaboration", "Leadership", "Team management", "Mentoring"],
+        "hard": [
+          "AI integration",
+          "Event sourcing",
+          "Microservices",
+          "Event-driven architecture",
+          "RabbitMQ",
+          "Algolia",
+          "PostGIS"
+        ]
+      }
+    },
+    {
+      "id": "repeatmd-senior-software-engineer",
+      "companyId": "repeatmd",
+      "title": "Senior Software Engineer",
+      "location": "Barcelona",
+      "employmentType": "full-time",
+      "contractType": "employee",
+      "startDate": "2023-09",
+      "endDate": "2025-01",
+      "summary": "My main focus areas were growth, enterprise-readiness and self-service initiatives. I was also heavily involved in observability improvements & incident response, resolved a handful of phantom bugs along the way and occasionally even jumped on direct calls with customers to troubleshoot their issues. During this time I touched nearly every component of RepeatMD's ecosystem and became a domain expert on several fronts including BDD adoption, which I had no prior experience with.",
+      "responsibilities": [
+        "Full stack development",
+        "Software design & architecture",
+        "QA & automated testing",
+        "Bug resolution",
+        "Systems monitoring & incident response",
+        "Technical & testing documentation",
+        "Microservices & DDD migration"
+      ],
+      "techStack": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "react-router",
+        "react-query",
+        "Node.js",
+        "Fastify",
+        "Nest.js",
+        "PostgreSQL",
+        "Python",
+        "Gherkin",
+        "Cucumber",
+        "Jest",
+        "Playwright",
+        "Docker",
+        "Terraform",
+        "AWS S3",
+        "AWS ECS",
+        "AWS RDS"
+      ],
+      "achievements": [
+        "Led certain aspects and contributed to the implementation, polishing & launch of a new product type that generated $1M+ in revenue within its first 3 months",
+        "Contributed to the planning & implementation of several features that unlocked a 10x jump in Black Friday and Cyber Monday sales as compared to the previous year",
+        "Saved 200+ hours of team dev time by refining task definitions, knowing when to push back / adapt scope & shaping key architectural decisions across several growth features to accommodate future needs",
+        "Resolved 20+ bugs, including some of the most long-living & hardest to reproduce in the codebase",
+        "Went from zero BDD experience to an early adopter & one of the org's go-to people for all things BDD",
+        "Implemented performance improvements accelerating several parts of the backend up to 60%"
+      ],
+      "skillsGained": {
+        "soft": ["Teamwork", "Ideation & collaboration"],
+        "hard": [
+          "Incident response",
+          "Observability",
+          "Datadog",
+          "System architecture",
+          "Nest.js",
+          "Microservices",
+          "DDD",
+          "CQRS",
+          "Event sourcing",
+          "BDD",
+          "Gherkin",
+          "Cucumber"
+        ]
+      }
+    },
+    {
+      "id": "smol-senior-software-engineer",
+      "companyId": "smol",
+      "title": "Senior Software Engineer",
+      "location": null,
+      "employmentType": "full-time",
+      "contractType": "employee",
+      "startDate": "2022-10",
+      "endDate": "2023-08",
+      "summary": "Led a flagship project migrating a large legacy codebase to Next.js, improving code quality, development velocity and site performance while reducing client-side bugs and advertising costs. Improved unit testing coverage and refined tech documentation & development guidelines for the team. Authored several critical data-protection features that ensured compliance with local regulations in strategically important markets.",
+      "responsibilities": [
+        "Full stack development",
+        "Legacy system migration",
+        "QA & automated testing",
+        "CI/CD",
+        "Technical documentation & guidelines"
+      ],
+      "techStack": ["JavaScript", "TypeScript", "React", "Next.js", "Jest", "Node.js", "Webpack", "NoSQL", "Shopify", "GraphQL"],
+      "achievements": [
+        "Consolidated legacy codebases into a single Next.js app, cutting client-side bugs & testing costs while improving site performance",
+        "Reduced advertising costs by 10% as a direct result of the performance improvements",
+        "Extended unit testing coverage, lowering regression bug risk & increasing QA velocity by ~5%",
+        "Improved tech documentation & development guidelines, boosting development velocity by ~10% on average",
+        "Authored data-protection features that kept the company compliant with local regulations in key markets"
+      ],
+      "skillsGained": {
+        "soft": ["Teamwork", "Managing high-level tasks"],
+        "hard": [
+          "NoSQL",
+          "Next.js",
+          "Shopify",
+          "GraphQL",
+          "Pub/sub",
+          "Message queues",
+          "Event-driven architecture",
+          "AWS SQS",
+          "Serverless",
+          "Cloud (AWS) infrastructure",
+          "Working with large monorepos",
+          "Webhooks management & local testing"
+        ]
+      }
+    },
+    {
+      "id": "devo-senior-software-engineer",
+      "companyId": "devo",
+      "title": "Senior Software Engineer",
+      "location": null,
+      "employmentType": "full-time",
+      "contractType": "employee",
+      "startDate": "2021-07",
+      "endDate": "2022-09",
+      "summary": "Led a greenfield project building a community-based content marketplace from the ground up, enabling 1000+ security teams to share & reuse security solutions with a few clicks. Defined key architectural decisions that let the platform exceed expected concurrent-request capacity by 10x, and onboarded and trained developers joining mid-project to keep delivery on track.",
+      "responsibilities": [
+        "Full stack development",
+        "QA & testing",
+        "CI/CD",
+        "Technical & testing documentation",
+        "DX & development processes automation"
+      ],
+      "techStack": [
+        "JavaScript",
+        "TypeScript",
+        "Node.js",
+        "Python",
+        "React",
+        "Redux",
+        "Redux-thunk",
+        "Immutable",
+        "Styled components (CSS-in-JS)",
+        "Inversify",
+        "Vite",
+        "Jest",
+        "Karma",
+        "Puppeteer",
+        "GitLab",
+        "PostgreSQL",
+        "GraphQL"
+      ],
+      "achievements": [
+        "Delivered a drama-free public release of Devo Exchange from the ground up",
+        "30+ on-demand security tools became instantly available to users",
+        "The app turned into one of the main references for the next iteration of Devo's proprietary design system",
+        "Extensible, easy-to-integrate design drew interest from other internal teams & the community, resulting in the quick addition of new content types",
+        "Reduced bundle size 3x versus initial estimations while continuing to ship new features",
+        "Onboarded & trained engineers joining mid-project, making sure the team hits delivery targets",
+        "Automated and participated in refinements of development processes, practices & guidelines to increase development velocity by 20% and cut release preparation time by 35% using custom Node.js scripts, GitLab CI/CD & webpack-based tooling"
+      ],
+      "skillsGained": {
+        "soft": [
+          "Teamwork",
+          "Cross-department collaboration",
+          "Ideation & collaboration",
+          "Cross-team definition & development of complex features"
+        ],
+        "hard": ["System design", "System architecture", "Headless CMS integration", "DX & build time tooling", "OOP principles"]
+      }
+    },
+    {
+      "id": "opticks-security-frontend-developer",
+      "companyId": "opticks-security",
+      "title": "Frontend Developer",
+      "location": "Barcelona",
+      "employmentType": "full-time",
+      "contractType": "employee",
+      "startDate": "2020-07",
+      "endDate": "2021-06",
+      "summary": "Led development of the traffic data visualisation & analysis tooling used by Opticks Security's customers, helping them make faster, more data-driven decisions. Contributed to key architectural decisions & maintained internal tooling alongside the core product, while also gathering direct feedback from strategic customers to help shape the roadmap.",
+      "responsibilities": [
+        "Frontend development, improvement & maintenance",
+        "Frontend deployment",
+        "QA & testing",
+        "UI development",
+        "CI/CD",
+        "DX & development processes automation"
+      ],
+      "techStack": [
+        "React",
+        "Redux",
+        "redux-thunk",
+        "Flow",
+        "JavaScript",
+        "Recharts",
+        "react-query",
+        "react-table",
+        "Styled components (CSS-in-JS)",
+        "Webpack",
+        "Cypress",
+        "Jest",
+        "Jenkins",
+        "react-admin",
+        "Node.js"
+      ],
+      "achievements": [
+        "Look & feel of the entire Web application was dramatically improved",
+        "Several major releases were seamlessly deployed",
+        "Frontend development automation tooling was enhanced with new capabilities",
+        "DX was substantially improved, which increased development velocity",
+        "The project was significantly re-structured for easier maintenance & shorter development cycles",
+        "Several security-oriented features were developed from the ground up",
+        "Refined & implemented one of the most demanded access control-related security features for the admin app",
+        "Boosted the performance of the application by introducing recently released react-query, reducing network payload by 35% per session"
+      ],
+      "skillsGained": {
+        "soft": [
+          "Teamwork",
+          "Ideation, collaboration & product-oriented contribution",
+          "Cross-team definition & development of complex features"
+        ],
+        "hard": [
+          "Data visualization",
+          "Complex state management",
+          "Redux & its ecosystem",
+          "react-query",
+          "react-table",
+          "Advanced client-side routing",
+          "Working with large FE-based SPAs",
+          "Advanced React, advanced React patterns",
+          "E2E testing",
+          "CI/CD management",
+          "Docker basics"
+        ]
+      }
+    },
+    {
+      "id": "modelmanagement-full-stack-developer",
+      "companyId": "modelmanagement",
+      "title": "Full Stack Developer",
+      "location": "Barcelona",
+      "employmentType": "full-time",
+      "contractType": "employee",
+      "startDate": "2019-12",
+      "endDate": "2020-06",
+      "summary": "Led the frontend part of the large social media codebase's migration to Vue.js, TypeScript & Nuxt, contributing to key architectural and tech-stack decisions along the way. Built an independent e-learning sub-platform from the ground up & helped plan the deconstruction of the existing monolith into more maintainable parts.",
+      "responsibilities": [
+        "Frontend development & improvement",
+        "Frontend maintenance",
+        "Driving development, implementation & testing of the new framework and new frontend workflows",
+        "Gradual movement of the existing project onto the new framework"
+      ],
+      "techStack": ["JavaScript", "TypeScript", "React", "Nuxt", "Vue", "jQuery", "PHP", "YouTube API"],
+      "achievements": [
+        "A strong base for migration of the project's frontend part was built from scratch & covered with unit tests, hitting a zero regression rate and improving test coverage by 10%",
+        "Some required low-level tools were set up & implemented into the new frontend base (routing, translation system, image processing tools, etc.)",
+        "An independent sub-platform (Model Academy) was built using a modern stack & released",
+        "Vue was introduced into the existing project to facilitate future migration",
+        "New landings, pages & exciting features were released"
+      ],
+      "skillsGained": {
+        "soft": ["Teamwork", "Cross-department teamwork & collaboration"],
+        "hard": [
+          "Working with large codebases",
+          "Working with very complex systems",
+          "Development processes automation",
+          "Vue",
+          "Nuxt",
+          "Manual QA",
+          "Some complex parts of Git",
+          "Legacy JavaScript & jQuery refactoring"
+        ]
+      }
+    },
+    {
+      "id": "suitaprest-lead-web-developer",
+      "companyId": "suitaprest",
+      "title": "Lead Web Developer",
+      "location": "Barcelona",
+      "employmentType": "full-time",
+      "contractType": "employee",
+      "startDate": "2019-05",
+      "endDate": "2019-11",
+      "summary": "Led development of internal tooling, systems integration & analytics for the company's operations, introducing modular, reusable architecture that boosted iteration speed on certain projects up to 70%. Built an internal automation tool for the sales team & an API that strengthened affiliate collaborations, contributing to key architectural decisions throughout.",
+      "responsibilities": ["Define, plan, manage, implement, test & continuously improve Suitaprest's Web projects"],
+      "techStack": ["JavaScript", "React", "PHP", "MySQL", "Node.js"],
+      "achievements": [
+        "Developed & tested new React-based forms that provide enhanced UX",
+        "Modularised and reorganised the architecture of several projects, increasing test coverage by 60% and reducing regression bugs practically to 0",
+        "Led the development of internal automation tooling to save about 40 minutes a day for each person in the sales team",
+        "Led the development of an API using PHP & PostgreSQL to enhance affiliate collaborations, resulting in a 20% sales increase and a 10% improvement in affiliate traffic conversion rate",
+        "Common code style was enforced across all tech projects",
+        "Implemented automated testing, e2e testing & code coverage tools",
+        "A dozen web projects were successfully delivered"
+      ],
+      "skillsGained": {
+        "soft": ["Leadership", "Tech teams management"],
+        "hard": ["System architecture", "System automation", "Systems integration", "React", "JavaScript", "PHP", "SQL (mostly MySQL)"]
+      }
+    },
+    {
+      "id": "suitaprest-web-developer",
+      "companyId": "suitaprest",
+      "title": "Web Developer",
+      "location": "Barcelona",
+      "employmentType": "full-time",
+      "contractType": "employee",
+      "startDate": "2018-04",
+      "endDate": "2019-04",
+      "summary": "Contributed to a major infrastructure upgrade and built a new company website using JavaScript, TypeScript, WordPress & PHP, helping the site reach all-time highs in impressions & conversion rate. Advocated for development best practices and stronger security layers that kept the site running smoothly throughout its 4+ year lifespan, and pushed for a healthier, better-coordinated approach to handling IT projects.",
+      "responsibilities": [
+        "Frontend development & testing of a new website",
+        "UI development",
+        "Technical teams coordination",
+        "Maintenance of the existing codebase & integrations"
+      ],
+      "techStack": ["JavaScript", "TypeScript", "PHP", "React", "HTML", "CSS", "Sass", "Sketch", "WordPress"],
+      "achievements": [
+        "A new website with greatly improved UX & extended functionality was built",
+        "Site infrastructure was significantly improved",
+        "The existing codebase was greatly improved, standardised & covered with unit tests",
+        "Handling of IT projects shifted towards a more structured and well-organised approach",
+        "Introduced & promoted several additional security layers and security best practices, ensuring the uninterrupted functioning of the website during its entire 4+ year lifespan",
+        "Advocated for development best practices to develop the frontend 2 months faster than planned"
+      ],
+      "skillsGained": {
+        "soft": ["Remote teams coordination", "Teamwork"],
+        "hard": ["Work with legacy code", "JavaScript", "Web infrastructure basics", "Zoho systems & tooling"]
+      }
+    },
+    {
+      "id": "molismedia-frontend-developer",
+      "companyId": "molismedia",
+      "title": "Frontend Developer",
+      "location": "Barcelona",
+      "employmentType": "full-time",
+      "contractType": "employee",
+      "startDate": "2017-11",
+      "endDate": "2018-03",
+      "summary": null,
+      "responsibilities": ["Frontend Web development", "UX", "SEO", "Improvement of existing projects", "Maintenance"],
+      "techStack": ["HTML", "CSS", "JavaScript", "jQuery", "PHP", "Google Search Console", "Google Analytics", "Sketch", "Adobe Illustrator"],
+      "achievements": [
+        "Delivered individual features & entire projects to strategic customers including 4YFN, TrendyBCN, D-Lab, ngi.eu & many others",
+        "New Molismedia website was developed & launched",
+        "Participated in the development and launch of 10+ websites with a total audience of 3M+",
+        "Participated in technical meetings with a strategic customer, gathered technical specifications & contributed to project definition and implementation",
+        "Proposed, mocked up & demoed ideas for 3+ new websites",
+        "Participated in code refactoring and rendering performance optimisations to speed up certain operations up to 3x while reducing code complexity up to 5x"
+      ],
+      "skillsGained": {
+        "soft": ["Teamwork", "Cross-cultural communication", "Cross-department collaboration"],
+        "hard": ["JavaScript", "jQuery", "PHP", "MySQL", "WordPress"]
+      }
+    },
+    {
+      "id": "real-estate-startup-it-seo-manager",
+      "companyId": "real-estate-startup",
+      "title": "IT & SEO Manager",
+      "location": "Barcelona",
+      "employmentType": "full-time",
+      "contractType": "employee",
+      "startDate": "2016-10",
+      "endDate": "2017-09",
+      "summary": null,
+      "responsibilities": [
+        "Planning & management of the corporate site development",
+        "Planning & management of systems integration",
+        "Planning & introduction of new features",
+        "Maintenance",
+        "Introduction, adjustment & fine-tuning of marketing analytical tools",
+        "SEO tweaks & improvements",
+        "Digital marketing cost optimisation"
+      ],
+      "techStack": ["HTML", "CSS", "Google Adwords", "Google Search Console", "Google Analytics", "Adobe Photoshop", "Adobe Illustrator"],
+      "achievements": [
+        "A brand-new site was created",
+        "Established full-funnel tracking to measure campaign performance & user conversion",
+        "Expanded B2B client network by ~75% through digital advertising initiatives",
+        "Scaled online lead capture by ~60% through optimised digital campaigns"
+      ],
+      "skillsGained": {
+        "soft": ["Self-management", "Work in an autonomous environment", "IT management", "Project management", "Teamwork"],
+        "hard": ["HTML", "CSS", "SEO", "Digital marketing basics"]
+      }
+    },
+    {
+      "id": "freelance-marketing-creative-graphic-web-designer",
+      "companyId": "freelance-marketing-creative",
+      "title": "Graphic & Web Designer",
+      "location": "Barcelona",
+      "employmentType": "part-time",
+      "contractType": "contractor",
+      "startDate": "2015-10",
+      "endDate": "2016-03",
+      "summary": null,
+      "responsibilities": [
+        "Creation & improvement of logotypes, business cards, (printed & digital) promotional materials, packaging, brand-books, style guides etc."
+      ],
+      "techStack": ["Adobe Photoshop", "Adobe Illustrator", "Adobe InDesign", "Sketch", "CSS"],
+      "achievements": [
+        "Designed several websites and first learned about a11y, responsive design & a few other Web-specific concepts",
+        "Designed logotypes & packaging used for a significant amount of time by several companies"
+      ],
+      "skillsGained": {
+        "soft": [
+          "Ideation",
+          "Communication skills",
+          "Cross-functional collaboration",
+          "Direct stakeholder collaboration",
+          "Remote & in-person collaboration"
+        ],
+        "hard": ["Web design (wireframes, prototypes)", "Some aspects of CSS", "Assets optimisation (for web & other contexts)", "Graphic design patterns"]
+      }
+    }
+  ],
+  "education": [
+    {
+      "id": "universitat-de-barcelona-real-estate-master",
+      "institution": "Universitat de Barcelona",
+      "degree": "Master's Degree in Management, Promotion & Advisory in Real Estate",
+      "field": "Real Estate",
+      "startDate": "2017-09",
+      "endDate": "2018-06",
+      "honors": []
+    },
+    {
+      "id": "eu-business-school-ba",
+      "institution": "EU Business School",
+      "degree": "Bachelor of Arts in Business & Design Management",
+      "field": "Business, Management, Marketing, and Related Support Services",
+      "startDate": "2014-09",
+      "endDate": "2017-06",
+      "honors": ["Magna cum laude"]
+    }
+  ]
+}

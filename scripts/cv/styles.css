@@ -1,0 +1,54 @@
+/* macOS "Avenir" resolves to Roman by default; the CV uses Book. */
+@font-face { font-family: "Avenir Book"; src: local("Avenir-Book"); }
+
+/* Side margins live on <body>: Chrome clips anything drawn into @page margins (e.g. overflowing headings). */
+@page { size: A4; margin: 30pt 0; background: #000; }
+
+:root {
+  --line: 11pt;   /* vertical rhythm: every gap is a multiple of this */
+  --side: 106pt;  /* sidebar column width */
+  --gutter: 12pt;
+
+  font: 8pt/var(--line) "Avenir Book", Avenir, sans-serif;
+  color: #fff;
+  background: #000;
+  print-color-adjust: exact;
+}
+
+* { margin: 0; padding: 0; }
+body { padding-inline: 60pt; }
+
+h1, h2 {
+  font-family: "Courier New", monospace;
+  font-weight: normal;
+  line-height: var(--line);
+  white-space: nowrap;
+}
+h1 { font-size: 16pt; margin-bottom: calc(2 * var(--line)); }
+h2 { font-size: 11pt; margin-bottom: var(--line); }
+h2:last-child { margin-bottom: 0; } /* heading-only entries */
+
+.sheet {
+  display: grid;
+  grid-template-columns: var(--side) 1fr;
+  column-gap: var(--gutter);
+  align-items: start;
+}
+.sheet + .sheet { break-before: page; }
+
+section + section { margin-top: calc(2 * var(--line)); }
+
+ul { list-style: "• "; padding-left: 0.8em; }
+li { text-wrap: pretty; }
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px; /* Chrome's minimum */
+  text-underline-offset: 1.5pt;
+}
+
+/* Contact & profile links: label line, link line, blank line */
+dd + dt { margin-top: var(--line); }
+
+/* Closing pointer to the full history, centred under the main column */
+footer { margin-top: calc(3 * var(--line)); text-align: center; }
