@@ -1,10 +1,10 @@
+import path from 'node:path';
 // Renders src/data/cv.json into public/cv-igor-bykov.pdf by printing it with
 // the locally installed Google Chrome, and publishes the data itself as
 // public/cv.json. Run via tsx, which resolves the `@/` alias.
 //
 // Re-run with: tsx scripts/cv
 import { copyFile, readFile } from 'node:fs/promises';
-import path from 'node:path';
 import puppeteer from 'puppeteer-core';
 import cv from '@/data/cv.json' with { type: 'json' };
 import layout from './layout';

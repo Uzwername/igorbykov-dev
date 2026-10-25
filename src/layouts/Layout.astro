@@ -1,6 +1,5 @@
 ---
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
+import { THEME_DARK, THEME_LIGHT, THEME_STORAGE_KEY } from '@/constants/theme';
 import {
   SITE_NAME,
   SITE_LOCALE,
@@ -8,7 +7,8 @@ import {
   SITE_DESCRIPTION,
   SITE_DEFAULT_OG_IMAGE,
 } from '@/constants/site';
-import { THEME_DARK, THEME_LIGHT, THEME_STORAGE_KEY } from '@/constants/theme';
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
 import '@/styles/global.css';
 
 interface OgImage {

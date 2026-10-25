@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
-import type { Page } from '@playwright/test';
 import { THEME_DARK, THEME_LIGHT, THEME_STORAGE_KEY } from '@/constants/theme';
 import type { Theme } from '@/types/theme';
+import type { Page } from '@playwright/test';
 
 const getToggle = (page: Page) =>
   page.getByRole('button', { name: 'Toggle theme' });

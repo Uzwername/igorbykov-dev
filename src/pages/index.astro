@@ -1,10 +1,10 @@
 ---
 import { Schema } from 'astro-seo-schema';
-import type { Person, WithContext } from 'schema-dts';
+import { SITE_PORTRAIT_PATH, SITE_URL } from '@/constants/site';
 import Layout from '@/layouts/Layout.astro';
 import cv from '@/data/cv.json';
-import { SITE_PORTRAIT_PATH, SITE_URL } from '@/constants/site';
 import type { CvData } from '@/types/cv';
+import type { Person, WithContext } from 'schema-dts';
 
 const { profile } = cv as CvData;
 

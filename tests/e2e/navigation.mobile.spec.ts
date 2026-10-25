@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
-import type { Page } from '@playwright/test';
 import { MOBILE_NAV_BACKDROP_ID, MOBILE_NAV_PANEL_ID } from '@/constants/html';
+import type { Page } from '@playwright/test';
 
 const NAV_LABELS = ['Freelance', 'Projects', 'CV', 'Writing', 'Contact'];
 
