@@ -2,3 +2,5 @@ allowBuilds:
   esbuild: true
   sharp: true
   workerd: true
+  # Only needed by import-x's resolver-based rules, which aren't used.
+  unrs-resolver: false
