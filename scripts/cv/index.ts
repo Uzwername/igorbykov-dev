@@ -2,17 +2,17 @@
 // the locally installed Google Chrome, and publishes the data itself as
 // public/cv.json. Run via tsx, which resolves the `@/` alias.
 //
-// Re-run with: tsx scripts/generate-cv.ts
+// Re-run with: tsx scripts/cv
 import { copyFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import puppeteer from 'puppeteer-core';
 import cv from '@/data/cv.json' with { type: 'json' };
-import layout from './cv/layout';
-import { render } from './cv/template';
+import layout from './layout';
+import { render } from './template';
 
-const ROOT = path.join(import.meta.dirname, '..');
+const ROOT = path.join(import.meta.dirname, '../..');
 const DATA_PATH = path.join(ROOT, 'src/data/cv.json');
-const STYLES_PATH = path.join(import.meta.dirname, 'cv/styles.css');
+const STYLES_PATH = path.join(import.meta.dirname, 'styles.css');
 const PDF_OUTPUT_PATH = path.join(ROOT, 'public/cv-igor-bykov.pdf');
 const DATA_OUTPUT_PATH = path.join(ROOT, 'public/cv.json');
 

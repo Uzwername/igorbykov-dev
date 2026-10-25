@@ -32,8 +32,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "assets:generate": "pnpm assets:generate:cv && pnpm assets:generate:meta",
-    "assets:generate:cv": "tsx scripts/generate-cv.ts",
-    "assets:generate:meta": "tsx scripts/generate-favicon.ts && tsx scripts/generate-og-image.ts"
+    "assets:generate:cv": "tsx scripts/cv",
+    "assets:generate:meta": "tsx scripts/favicon && tsx scripts/og-image"
   },
   "dependencies": {
     "@astrojs/react": "7.0.0",

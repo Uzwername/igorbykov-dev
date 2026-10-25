@@ -1,15 +1,15 @@
 // Regenerates the default social-preview card (og:image / twitter:image) and
 // the square portrait used by the Person JSON-LD, both in public/. Text is drawn from real IBM Plex glyph outlines (same approach as
-// generate-favicon.ts), so the card doesn't depend on any installed fonts.
+// scripts/favicon), so the card doesn't depend on any installed fonts.
 //
-// Re-run with: tsx scripts/generate-og-image.ts
-import { readFileSync, writeFileSync } from 'node:fs';
+// Re-run with: tsx scripts/og-image
 import path from 'node:path';
-import opentype from 'opentype.js';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { Resvg } from '@resvg/resvg-js';
+import { loadFont } from '~/scripts/utils/font';
 import type { Font, PathCommand } from 'opentype.js';
 
-const ROOT = path.join(import.meta.dirname, '..');
+const ROOT = path.join(import.meta.dirname, '../..');
 const CARD_OUTPUT_PATH = path.join(ROOT, 'public/og-image.png');
 const PORTRAIT_OUTPUT_PATH = path.join(ROOT, 'public/igor-bykov.png');
 const PHOTO_PATH = path.join(ROOT, 'src/assets/igor-bykov.jpg');
@@ -101,16 +101,6 @@ interface Fonts {
   sansRegular: Font;
   monoMedium: Font;
 }
-
-const loadFont = (fontPath: string) => {
-  const buffer = readFileSync(fontPath);
-  return opentype.parse(
-    buffer.buffer.slice(
-      buffer.byteOffset,
-      buffer.byteOffset + buffer.byteLength,
-    ),
-  );
-};
 
 // Greedy word wrap against the font's real advance widths.
 const wrapText = (

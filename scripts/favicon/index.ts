@@ -2,14 +2,14 @@
 // of truth: "IB" set in IBM Plex Mono Bold, centered in a black circle on a
 // transparent field (matching the site's actual font, not an approximation).
 //
-// Re-run with: tsx scripts/generate-favicon.ts
-import { readFileSync, writeFileSync } from 'node:fs';
+// Re-run with: tsx scripts/favicon
 import path from 'node:path';
-import opentype from 'opentype.js';
+import { writeFileSync } from 'node:fs';
 import { Resvg } from '@resvg/resvg-js';
+import { loadFont } from '~/scripts/utils/font';
 import type { Font, PathCommand } from 'opentype.js';
 
-const ROOT = path.join(import.meta.dirname, '..');
+const ROOT = path.join(import.meta.dirname, '../..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 
 const FONT_PATH = path.join(
@@ -27,16 +27,6 @@ const WHITE = '#FFF';
 // icon directly on top of these values, so they must never match the circle's own
 // fill (BLACK) or it would vanish into the backdrop.
 const ICON_BACKDROP_COLOR = WHITE;
-
-const loadFont = () => {
-  const buffer = readFileSync(FONT_PATH);
-  return opentype.parse(
-    buffer.buffer.slice(
-      buffer.byteOffset,
-      buffer.byteOffset + buffer.byteLength,
-    ),
-  );
-};
 
 const getTextPathAndBounds = (font: Font, fontSize: number) => {
   const path = font.getPath(TEXT, 0, 0, fontSize);
@@ -150,7 +140,7 @@ const writePublicFile = (name: string, contents: string | Buffer) => {
 };
 
 const main = () => {
-  const font = loadFont();
+  const font = loadFont(FONT_PATH);
   const textPathData = buildCenteredTextPathData(font);
   const circlePathData = circleAsPathData();
 
