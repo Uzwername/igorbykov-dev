@@ -74,8 +74,8 @@
   },
   "companies": [
     {
-      "id": "esim-go",
-      "name": "eSIM Go",
+      "id": "breeze",
+      "name": "Breeze",
       "industry": ["Telecom", "Travel Tech"],
       "website": "https://breezesim.com"
     },
@@ -142,8 +142,8 @@
   ],
   "positions": [
     {
-      "id": "esim-go-full-stack-engineer",
-      "companyId": "esim-go",
+      "id": "breeze-full-stack-engineer",
+      "companyId": "breeze",
       "title": "Full Stack Engineer",
       "location": "Barcelona",
       "employmentType": "full-time",
