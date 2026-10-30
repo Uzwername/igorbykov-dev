@@ -89,10 +89,10 @@ Content rules:
 - **JSON wins.** Code prints JSON text exactly as written: no rewording, picking, reordering, merging or adding punctuation in code. If the content should change, change the JSON.
 - **No trailing full stops** on bullet-like strings (highlights, achievements, etc.).
 - **Order lives in the JSON; never sort in code.** `positions` and `companies` (in the order each company's first role appears): current roles (`endDate: null`) first, `full-time` before `part-time` among those, then `companyId` alphabetically; past roles follow, most recent first.
-- **Every role is its own entry** with its own title and dates; don't collapse roles. A role with empty `achievements` (e.g. the just-started eSIM Go) renders as its heading only, with no placeholder text.
+- **Every role is its own entry** with its own title and dates; don't collapse roles. A role with empty `achievements` (e.g. the just-started Breeze) renders as its heading only, with no placeholder text.
 - **Shape:** prefer structured, reusable shapes over one-off display strings, e.g. `profile.stats.stackOverflow.reputation: 2800` (not `"2.8K+"`), `profile.openSourceContributions: [{ name, url }]`.
 - `profile.highlights` (the CV's opening bullets) and `profile.mainTech` (one string per CV line, e.g. `"Node.js, Express, NestJS"`) are CV-specific.
-- **Confirmed by the user, even though they look odd:** eSIM Go's `website` is `https://breezesim.com`; the Freelance company is just `"Freelance"`; ModelManagement is `"ModelManagement"` (no `.com`); the `mkdir-tree` contribution links to the `Uzwername/directory-tree-from-scheme` repo.
+- **Confirmed by the user, even though they look odd:** the Freelance company is just `"Freelance"`; ModelManagement is `"ModelManagement"` (no `.com`); the `mkdir-tree` contribution links to the `Uzwername/directory-tree-from-scheme` repo.
 
 ## CV PDF (`scripts/cv`)
 
