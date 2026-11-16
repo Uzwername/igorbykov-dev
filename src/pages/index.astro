@@ -4,6 +4,7 @@ import { PAGE_CONTAINER_CLASS_NAME } from '@/constants/styles';
 import { SITE_PORTRAIT_PATH, SITE_URL } from '@/constants/site';
 import Layout from '@/layouts/Layout.astro';
 import About from '@/components/About.astro';
+import TechStack from '@/components/TechStack.astro';
 import CareerSplit from '@/components/CareerSplit.astro';
 import cv from '@/data/cv.json';
 import type { CvData } from '@/types/cv';
@@ -42,5 +43,6 @@ const person: WithContext<Person> = {
     <h1 class="sr-only">{title}</h1>
     <About />
     <CareerSplit />
+    <TechStack />
   </div>
 </Layout>

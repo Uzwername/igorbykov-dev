@@ -1,0 +1,36 @@
+---
+import { TEXT_LINK_CLASS_NAME } from '@/constants/styles';
+import { getMostUsedTech } from '@/utils/cv';
+import SectionHeading from '@/components/SectionHeading.astro';
+import cv from '@/data/cv.json';
+import type { CvData } from '@/types/cv';
+
+const { positions } = cv as CvData;
+
+const tech = getMostUsedTech(positions, {
+  recentPositions: 5,
+  minMentions: 2,
+});
+---
+
+<section aria-labelledby="tech-stack-heading">
+  <SectionHeading id="tech-stack-heading">Tech stack</SectionHeading>
+  <div class="mt-4 space-y-4 leading-relaxed">
+    <p>
+      My go-to stack is TypeScript / JavaScript, but I don’t stay boxed in by
+      it. I’ve picked up unfamiliar languages & technologies 5+ times over{' '}
+      <a href="/cv/" class={TEXT_LINK_CLASS_NAME}>
+        my career
+      </a>{' '}
+      quite quickly and naturally when a project needed it.
+    </p>
+    <p>Here’s what I currently work with most, just for reference:</p>
+  </div>
+  <ul class="mt-4 flex flex-wrap gap-2">
+    {tech.map((name) => (
+      <li class="border-border bg-canvas-subtle rounded-md border px-2.5 py-1 font-mono text-sm">
+        {name}
+      </li>
+    ))}
+  </ul>
+</section>
