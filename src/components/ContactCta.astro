@@ -1,0 +1,14 @@
+---
+import LinkButton from '@/components/LinkButton.astro';
+
+interface Props {
+  /** Layout only (margin…), e.g. the gap to the content above. */
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['flex justify-center', className]}>
+  <LinkButton href="/contact/">Let's build together</LinkButton>
+</div>
