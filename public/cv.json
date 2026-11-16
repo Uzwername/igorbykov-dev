@@ -152,9 +152,34 @@
       "endDate": null,
       "summary": null,
       "responsibilities": [],
-      "techStack": [],
+      "techStack": [
+        "TypeScript",
+        "JavaScript",
+        "Node.js",
+        "React Native",
+        "GraphQL",
+        "REST",
+        "PostgreSQL",
+        "Firebase",
+        "AWS",
+        "Docker",
+        "Vite",
+        "Jest",
+        "Sentry",
+        "Shopify"
+      ],
       "achievements": [],
-      "skillsGained": { "soft": [], "hard": [] }
+      "skillsGained": {
+        "soft": [],
+        "hard": [
+          "Event-driven architecture",
+          "Event sourcing",
+          "Microservices",
+          "DDD",
+          "Hexagonal architecture",
+          "AI integration"
+        ]
+      }
     },
     {
       "id": "freelance-web-development",
@@ -178,8 +203,8 @@
         "Maintenance"
       ],
       "techStack": [
-        "JavaScript",
         "TypeScript",
+        "JavaScript",
         "Python",
         "PHP",
         "Node.js",
@@ -190,7 +215,7 @@
         "NPM & modern JS tooling",
         "React",
         "Next.js",
-        "Nest.js",
+        "NestJS",
         "Jest",
         "Playwright",
         "Webpack",
@@ -221,7 +246,7 @@
           "Jest",
           "Playwright",
           "Node.js",
-          "Nest.js",
+          "NestJS",
           "Python",
           "PHP",
           "Next.js",
@@ -253,8 +278,8 @@
         "DX & development processes automation"
       ],
       "techStack": [
-        "JavaScript",
         "TypeScript",
+        "JavaScript",
         "React",
         "Node.js",
         "PostgreSQL",
@@ -308,14 +333,14 @@
         "Microservices & DDD migration"
       ],
       "techStack": [
-        "JavaScript",
         "TypeScript",
+        "JavaScript",
         "React",
         "react-router",
         "react-query",
         "Node.js",
         "Fastify",
-        "Nest.js",
+        "NestJS",
         "PostgreSQL",
         "Python",
         "Gherkin",
@@ -343,7 +368,7 @@
           "Observability",
           "Datadog",
           "System architecture",
-          "Nest.js",
+          "NestJS",
           "Microservices",
           "DDD",
           "CQRS",
@@ -371,7 +396,7 @@
         "CI/CD",
         "Technical documentation & guidelines"
       ],
-      "techStack": ["JavaScript", "TypeScript", "React", "Next.js", "Jest", "Node.js", "Webpack", "NoSQL", "Shopify", "GraphQL"],
+      "techStack": ["TypeScript", "JavaScript", "React", "Next.js", "Jest", "Node.js", "Webpack", "NoSQL", "Shopify", "GraphQL"],
       "achievements": [
         "Consolidated legacy codebases into a single Next.js app, cutting client-side bugs & testing costs while improving site performance",
         "Reduced advertising costs by 10% as a direct result of the performance improvements",
@@ -415,13 +440,13 @@
         "DX & development processes automation"
       ],
       "techStack": [
-        "JavaScript",
         "TypeScript",
+        "JavaScript",
         "Node.js",
         "Python",
         "React",
         "Redux",
-        "Redux-thunk",
+        "redux-thunk",
         "Immutable",
         "Styled components (CSS-in-JS)",
         "Inversify",
@@ -534,7 +559,7 @@
         "Driving development, implementation & testing of the new framework and new frontend workflows",
         "Gradual movement of the existing project onto the new framework"
       ],
-      "techStack": ["JavaScript", "TypeScript", "React", "Nuxt", "Vue", "jQuery", "PHP", "YouTube API"],
+      "techStack": ["TypeScript", "JavaScript", "React", "Nuxt", "Vue", "jQuery", "PHP", "YouTube API"],
       "achievements": [
         "A strong base for migration of the project's frontend part was built from scratch & covered with unit tests, hitting a zero regression rate and improving test coverage by 10%",
         "Some required low-level tools were set up & implemented into the new frontend base (routing, translation system, image processing tools, etc.)",
