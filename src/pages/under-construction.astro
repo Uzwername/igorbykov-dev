@@ -1,5 +1,8 @@
 ---
-import { OPENING_MEDIA_CLASS_NAME } from '@/constants/styles';
+import {
+  OPENING_MEDIA_CLASS_NAME,
+  PAGE_CONTAINER_CLASS_NAME,
+} from '@/constants/styles';
 import Layout from '@/layouts/Layout.astro';
 import LinkButton from '@/components/LinkButton.astro';
 import ExternalLink from '@/components/ExternalLink.astro';
@@ -12,7 +15,7 @@ const { profile } = cv as CvData;
 ---
 
 <Layout title="Igor Bykov — Under construction" noIndex>
-  <section class="mx-auto max-w-3xl px-6 py-16">
+  <section class={`px-6 py-16 ${PAGE_CONTAINER_CLASS_NAME}`}>
     <video
       src={underConstructionVideo}
       width="720"

@@ -1,0 +1,15 @@
+---
+interface Props {
+  /** Referenced by the section's `aria-labelledby`. */
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<h2 id={id} class="flex items-baseline gap-2 text-lg font-semibold">
+  <span aria-hidden="true" class="text-fg-muted font-mono font-normal">
+    ##
+  </span>
+  <slot />
+</h2>

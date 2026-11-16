@@ -6,3 +6,10 @@ export const NAV_BAR_PADDING_CLASS_NAME = 'p-3';
 /** The GIF / video at the top of status pages (404, under construction). */
 export const OPENING_MEDIA_CLASS_NAME =
   'border-border mx-auto block h-auto w-full max-w-sm rounded-md border';
+
+/** Links inside running text. */
+export const TEXT_LINK_CLASS_NAME =
+  'text-accent hover:text-accent-emphasis underline underline-offset-2 transition-colors';
+
+/** Centred column shared by the header, footer & page content, so they stay aligned. */
+export const PAGE_CONTAINER_CLASS_NAME = 'mx-auto max-w-5xl';

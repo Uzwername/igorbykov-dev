@@ -108,7 +108,7 @@ Layout rules:
 - Page 1: title, sidebar (Contact info, On the Web, Main tech, Contributions, Up next) and main (highlights, then roles). Page 2: sidebar (Personality, Languages, Education) and main (roles, then the footer).
 - **Footer:** inside `<main>`, centred relative to the main column (not the page). The whole text "View more on LinkedIn" is the link.
 - **Contact / On the Web:** label line, link line, blank line, as in the original. Icons in place of the labels were tried and rejected as ugly; don't reintroduce them.
-- **Link text** is derived from the URLs in `profile.contact` (`/in/igor-bykov/`, `@Uzwername`, `/users/9430588/`, `@igor_bykov`). Links keep their full URLs in the PDF.
+- **Link text** is derived from the URLs in `profile.contact` (`/in/igor-bykov/`, `@Uzwername`, `/users/igor-bykov`, `@igor_bykov`). Links keep their full URLs in the PDF.
 
 Design (deliberately separate from the site's design system):
 - **Fonts:** headings in Courier New, body in Avenir **Book** at 8pt. A local `@font-face` pins `Avenir-Book`, because plain `Avenir` resolves to Roman on macOS. macOS-only font binding is fine.

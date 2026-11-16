@@ -1,12 +1,16 @@
 ---
 import { Schema } from 'astro-seo-schema';
+import { PAGE_CONTAINER_CLASS_NAME } from '@/constants/styles';
 import { SITE_PORTRAIT_PATH, SITE_URL } from '@/constants/site';
 import Layout from '@/layouts/Layout.astro';
+import About from '@/components/About.astro';
 import cv from '@/data/cv.json';
 import type { CvData } from '@/types/cv';
 import type { Person, WithContext } from 'schema-dts';
 
 const { profile } = cv as CvData;
+
+const title = 'Igor Bykov — Senior full stack software engineer';
 
 const person: WithContext<Person> = {
   '@context': 'https://schema.org',
@@ -29,32 +33,12 @@ const person: WithContext<Person> = {
     profile.contact.devTo,
   ],
 };
-
-const stack = [
-  'TypeScript',
-  'Node.js',
-  'React',
-  'Astro',
-  'PostgreSQL',
-  'Docker',
-];
 ---
 
-<Layout title="Igor Bykov — Senior full stack software engineer">
+<Layout title={title}>
   <Schema slot="head" item={person} />
-  <section class="mx-auto max-w-3xl px-6 py-16">
-    <h1 class="text-2xl font-semibold">Igor Bykov</h1>
-    <p class="text-fg-muted mt-3 max-w-prose">
-      Senior full stack software engineer & digital nomad, currently based in
-      Barcelona. I like tackling complex problems, taking ownership, and finding
-      an effective solution for every one of them.
-    </p>
-    <ul class="mt-6 flex flex-wrap gap-2">
-      {stack.map((tech) => (
-        <li class="border-border bg-canvas-subtle text-fg-muted rounded-md border px-2 py-1 font-mono text-xs">
-          {tech}
-        </li>
-      ))}
-    </ul>
-  </section>
+  <div class={`px-3 py-12 ${PAGE_CONTAINER_CLASS_NAME}`}>
+    <h1 class="sr-only">{title}</h1>
+    <About />
+  </div>
 </Layout>

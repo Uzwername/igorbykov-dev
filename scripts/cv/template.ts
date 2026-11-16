@@ -2,6 +2,7 @@
 // ghtml escapes every `${…}`; `!${…}` embeds already-rendered HTML (nested `html` calls).
 
 import { html } from 'ghtml';
+import { lastSegment, urlPath } from '@/utils/url';
 import type data from '@/data/cv.json';
 
 type Cv = typeof data;
@@ -23,9 +24,6 @@ export interface Layout {
 // "2023-09" -> "09/2023", null -> "present"
 const formatDate = (ym: string | null) =>
   ym ? ym.split('-').reverse().join('/') : 'present';
-const urlPath = (url: string) => new URL(url).pathname;
-const lastSegment = (url: string) =>
-  urlPath(url).split('/').filter(Boolean).at(-1);
 const year = (ym: string) => ym.slice(0, 4);
 
 const fail = (message: string): never => {
@@ -92,11 +90,7 @@ const blocks = {
       pairs([
         ['Web', website, new URL(website).hostname],
         ['GitHub', github, `@${lastSegment(github)}`],
-        [
-          'StackOverflow',
-          stackOverflow,
-          urlPath(stackOverflow).replace(/[^/]+$/, ''),
-        ],
+        ['StackOverflow', stackOverflow, urlPath(stackOverflow)],
         ['dev.to', devTo, `@${lastSegment(devTo)}`],
       ]),
     ),

@@ -1,0 +1,147 @@
+---
+import { Picture } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import { TEXT_LINK_CLASS_NAME } from '@/constants/styles';
+import { lastSegment, urlPath } from '@/utils/url';
+import Emoji from '@/components/Emoji.astro';
+import ExternalLink from '@/components/ExternalLink.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import cv from '@/data/cv.json';
+import portrait from '@/assets/igor-bykov.jpg';
+import type { CvData } from '@/types/cv';
+
+const {
+  profile: {
+    contact: { email, linkedin, github, stackOverflow, devTo },
+  },
+} = cv as CvData;
+
+const CONTACT_LINK_CLASS_NAME = `${TEXT_LINK_CLASS_NAME} inline-flex max-w-full items-start gap-1.5`;
+// One line tall, so the icon stays centred on the first line when the text wraps.
+const CONTACT_ICON_CLASS_NAME = 'h-lh w-4 shrink-0';
+
+// Same link text as the CV PDF's "Contact Info" / "On the Web".
+const socialLinks = [
+  {
+    label: 'LinkedIn',
+    icon: 'mdi:linkedin',
+    href: linkedin,
+    text: `${urlPath(linkedin)}/`,
+  },
+  {
+    label: 'GitHub',
+    icon: 'mdi:github',
+    href: github,
+    text: `@${lastSegment(github)}`,
+  },
+  {
+    label: 'Stack Overflow',
+    icon: 'mdi:stack-overflow',
+    href: stackOverflow,
+    text: urlPath(stackOverflow),
+  },
+  {
+    label: 'dev.to',
+    icon: 'mdi:dev-to',
+    href: devTo,
+    text: `@${lastSegment(devTo)}`,
+  },
+];
+
+const mainPoints = [
+  'I always start with the "Why?" before anything else',
+  'Love learning & get deep into concepts and systems',
+  'Love solving problems more than writing code',
+  'Love helping others to understand how things work',
+  'Love concise, self-explanatory & smart solutions',
+  'Know how to type the "•" symbol',
+  'Unlikely to confuse "back up" & "back-end"',
+  'Climb virtual trees way faster than real ones',
+];
+---
+
+<section aria-labelledby="about-heading">
+  <SectionHeading id="about-heading">About</SectionHeading>
+  <div class="border-border relative mt-14 rounded-md border">
+    <Picture
+      priority
+      src={portrait}
+      width={160}
+      formats={['avif', 'webp']}
+      alt="Igor Bykov"
+      class="border-border bg-canvas absolute top-0 left-1/2 size-20 -translate-x-1/2 -translate-y-1/2 rounded-full border object-cover object-[50%_35%]"
+    />
+    <div class="px-4 pt-14 pb-6 sm:px-6">
+      <p class="text-center text-2xl font-semibold">
+        Hello, really glad to see you here!{' '}
+        <Emoji emoji="👋" label="waving hand" />
+      </p>
+      <div class="mt-6 space-y-4 leading-relaxed">
+        <p>
+          My name is Igor Bykov, I'm a senior full stack software engineer &
+          digital nomad from Russia currently based in Barcelona, Spain.
+          <br />
+          If you ever spot me during an offscreen break, I'll likely be riding a
+          bike, enjoying some darn good coffee or matcha, hiking, playing
+          volleyball on the beach, reading a good book or travelling around the
+          globe.
+        </p>
+        <p>
+          Speaking of screen time, my career has always run on two parallel
+          branches:{' '}
+          <a href="/cv/" class={TEXT_LINK_CLASS_NAME}>
+            building awesome tech products at my main job
+          </a>{' '}
+          &{' '}
+          <a href="/freelance/" class={TEXT_LINK_CLASS_NAME}>
+            contributing to several long-term freelance collaborations
+          </a>
+          , some running for over 10 years at this point.
+        </p>
+        <p>
+          I like to tackle complex problems, take ownership, make things work,
+          constantly learn, share my experience & always strive to find an
+          effective solution for every problem.
+        </p>
+        <div>
+          <p>The main points:</p>
+          <ul class="mt-2 list-['•_'] pl-4">
+            {mainPoints.map((point) => (
+              <li>{point}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ul class="border-border flex flex-col gap-3 border-t px-4 py-4 font-mono text-sm sm:px-6 lg:flex-row lg:justify-between lg:gap-2">
+      {socialLinks.map(({ label, icon, href, text }) => (
+        <li class="min-w-0">
+          <ExternalLink
+            href={href}
+            rel={['me']}
+            class={CONTACT_LINK_CLASS_NAME}
+          >
+            <Icon
+              name={icon}
+              class={CONTACT_ICON_CLASS_NAME}
+              aria-hidden="true"
+            />
+            <span class="sr-only">{label}</span>
+            <span class="min-w-0 wrap-anywhere">{text}</span>
+          </ExternalLink>
+        </li>
+      ))}
+      <li class="min-w-0">
+        <a href={`mailto:${email}`} class={CONTACT_LINK_CLASS_NAME}>
+          <Icon
+            name="mdi:email-outline"
+            class={CONTACT_ICON_CLASS_NAME}
+            aria-hidden="true"
+          />
+          <span class="sr-only">Email</span>
+          <span class="min-w-0 wrap-anywhere">{email}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>

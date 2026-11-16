@@ -1,5 +1,8 @@
 ---
-import { NAV_BAR_PADDING_CLASS_NAME } from '@/constants/styles';
+import {
+  NAV_BAR_PADDING_CLASS_NAME,
+  PAGE_CONTAINER_CLASS_NAME,
+} from '@/constants/styles';
 import MobileNav from '@/components/MobileNav.astro';
 import TopNavLogo from '@/components/TopNavLogo.astro';
 import ThemeToggle from '@/components/ThemeToggle.astro';
@@ -15,7 +18,7 @@ const navItems = [
 
 <header class="border-border border-b">
   <div
-    class={`mx-auto flex max-w-3xl items-center justify-between ${NAV_BAR_PADDING_CLASS_NAME}`}
+    class={`flex items-center justify-between ${PAGE_CONTAINER_CLASS_NAME} ${NAV_BAR_PADDING_CLASS_NAME}`}
   >
     <TopNavLogo />
     <div class="flex items-center gap-4">
