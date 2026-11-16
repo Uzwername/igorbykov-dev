@@ -1,0 +1,169 @@
+---
+import { Icon } from 'astro-icon/components';
+import LinkButton from '@/components/LinkButton.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import cv from '@/data/cv.json';
+import type { ContractType, CvData } from '@/types/cv';
+
+// Freelance / Day job, one pair per row, as in content.md.
+const rows = [
+  ['Remote', 'Remote'],
+  ['Part time', 'Full time'],
+  ['Contractor', 'Employee'],
+  ['Totally async', 'Mostly async'],
+  ['Non-business hours', 'Business hours'],
+  ['Burst availability', 'Steady availability'],
+  ['AI-enabled', 'AI-enabled'],
+  ['High agency', 'High agency'],
+  ['Building great stuff', 'Building great stuff'],
+] as const;
+
+const { positions } = cv as CvData;
+
+// Time spent in every role of a contract type, as of the build.
+const getTotalSeconds = (contractType: ContractType) =>
+  positions
+    .filter((position) => position.contractType === contractType)
+    .reduce((total, { startDate, endDate }) => {
+      const start = new Date(`${startDate}-01`);
+      const end = endDate ? new Date(`${endDate}-01`) : new Date();
+
+      // The end month counts in full.
+      if (endDate) {
+        end.setMonth(end.getMonth() + 1);
+      }
+
+      return total + (end.getTime() - start.getTime()) / 1000;
+    }, 0);
+
+// Average year & month, so whole seconds split evenly.
+const UNITS = [
+  { unit: 'y', iso: 'Y', seconds: 31_557_600 },
+  { unit: 'mo', iso: 'M', seconds: 2_629_800 },
+  { unit: 'd', iso: 'D', seconds: 86_400 },
+  { unit: 'h', iso: 'H', seconds: 3_600 },
+  { unit: 'm', iso: 'M', seconds: 60 },
+] as const;
+
+// GitHub-style run time, e.g. "10y 7mo 14d 0h 30m 23s". cv.json dates are
+// "YYYY-MM", so everything below months is approximate, and the seconds are
+// random: otherwise both jobs would always show the same ones.
+const getDuration = (totalSeconds: number) => {
+  let rest = Math.floor(totalSeconds);
+  const parts = [
+    ...UNITS.map(({ unit, iso, seconds }) => {
+      const value = Math.floor(rest / seconds);
+      rest -= value * seconds;
+
+      return { unit, iso, value };
+    }),
+    { unit: 's', iso: 'S', value: Math.floor(Math.random() * 60) },
+  ];
+  const toIso = (isoParts: typeof parts) =>
+    isoParts.map(({ iso, value }) => `${value}${iso}`).join('');
+
+  return {
+    label: parts.map(({ unit, value }) => `${value}${unit}`).join(' '),
+    // ISO 8601: years, months & days, then T and the time.
+    iso: `P${toIso(parts.slice(0, 3))}T${toIso(parts.slice(3))}`,
+  };
+};
+
+// Two parallel jobs of one GitHub Actions run, both succeeding.
+const jobs = [
+  {
+    name: 'Freelance',
+    href: '/freelance/',
+    duration: getDuration(getTotalSeconds('contractor')),
+    steps: rows.map(([freelance]) => freelance),
+  },
+  {
+    name: 'Day job',
+    href: '/cv/',
+    duration: getDuration(getTotalSeconds('employee')),
+    steps: rows.map(([, dayJob]) => dayJob),
+  },
+];
+
+// Lines are 2px, so vertical ones are centred on their x with a translate.
+const VERTICAL_LINE_CLASS_NAME = 'bg-border absolute w-0.5 -translate-x-1/2';
+// The ringed dots where GitHub's graph lines meet a job (positioned per use).
+const PORT_CLASS_NAME =
+  'border-border bg-canvas before:bg-fg-muted z-10 size-4 rounded-full border-2 before:absolute before:inset-0.5 before:rounded-full';
+---
+
+<section aria-labelledby="career-split-heading">
+  <SectionHeading id="career-split-heading">Career split</SectionHeading>
+  <div class="mt-4">
+    <div
+      aria-hidden="true"
+      class={`${PORT_CLASS_NAME} relative md:mx-auto`}
+    ></div>
+    <!-- Desktop: one line down from the start, then a fork into both jobs. -->
+    <div aria-hidden="true" class="relative hidden h-10 md:block">
+      <div class={`${VERTICAL_LINE_CLASS_NAME} top-0 left-1/2 h-1/2`}></div>
+      <div class="border-border absolute top-1/2 right-[calc((100%-1.5rem)/4)] bottom-0 left-[calc((100%-1.5rem)/4)] rounded-t-lg border-x-2 border-t-2">
+        <!-- left-px/right-px: centred on the 2px borders, not their outer edge. -->
+        <div
+          class={`${PORT_CLASS_NAME} absolute bottom-0 left-px -translate-x-1/2 translate-y-1/2`}
+        ></div>
+        <div
+          class={`${PORT_CLASS_NAME} absolute right-px bottom-0 translate-x-1/2 translate-y-1/2`}
+        ></div>
+      </div>
+    </div>
+    <ol class="md:grid md:grid-cols-2 md:gap-6">
+      {jobs.map(({ name, href, duration, steps }, index) => (
+        <li class="group relative pt-6 pl-8 md:p-0">
+          {/* Mobile: the line runs down the left (centred under the 16px start dot) and branches into each job, level with its header (pt-6 + half the header). */}
+          <div aria-hidden="true" class="md:hidden">
+            {index < jobs.length - 1 ? (
+              <>
+                <div class={`${VERTICAL_LINE_CLASS_NAME} inset-y-0 left-2`} />
+                <div class="bg-border absolute top-11 left-2 h-0.5 w-6 -translate-y-1/2" />
+              </>
+            ) : (
+              <div class="border-border absolute top-0 left-2 h-[calc(2.75rem+1px)] w-6 -translate-x-px rounded-bl-lg border-b-2 border-l-2" />
+            )}
+            <div
+              class={`${PORT_CLASS_NAME} absolute top-11 left-8 -translate-1/2`}
+            />
+          </div>
+          <article class="border-border bg-canvas flex h-full flex-col rounded-md border shadow-sm">
+            <header class="flex min-h-10 flex-wrap items-center gap-x-2 px-3 py-2 text-sm">
+              <Icon
+                name="mdi:check-circle"
+                aria-hidden="true"
+                class="text-accent size-4 shrink-0"
+              />
+              <h3 class="font-semibold whitespace-nowrap">{name}</h3>
+              <time
+                datetime={duration.iso}
+                class="text-fg-muted ml-auto font-mono text-xs"
+              >
+                {duration.label}
+              </time>
+            </header>
+            <ol class="border-border flex-1 border-t py-1.5 text-sm">
+              {steps.map((step) => (
+                <li class="flex items-center gap-2 px-3 py-1">
+                  <Icon
+                    name="mdi:check-circle"
+                    aria-hidden="true"
+                    class="text-accent size-4 shrink-0"
+                  />
+                  {step}
+                </li>
+              ))}
+            </ol>
+            <div class="border-border border-t px-3 py-2.5">
+              <LinkButton href={href} variant="secondary">
+                Learn more
+              </LinkButton>
+            </div>
+          </article>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
